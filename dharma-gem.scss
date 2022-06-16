@@ -1,0 +1,131 @@
+$gem-dim: 480px;
+
+body {
+    min-width: $gem-dim + 200px;
+    background-color: #000;
+
+    .settings {
+        width: 100%;
+        position: fixed;
+        text-align: center;
+        z-index: 999;
+    }
+
+    .perspective-container {
+        height: $gem-dim;
+        width: $gem-dim;
+        margin: auto;
+        perspective: $gem-dim * 8;
+        position: relative;
+        top: -30px;
+        z-index: 1;
+
+        * {
+            transform-style: preserve-3d;
+        }
+
+        .jewel {
+            height: $gem-dim;
+            width: $gem-dim;
+            transition: 1s;
+            transform-origin: bottom;
+
+            &#show-1 {
+                transform: rotateX(-30deg) rotateY(-45deg);
+            }
+
+            &#show-2 {
+                transform: rotateX(-30deg) rotateY(-135deg);
+            }
+
+            &#show-3 {
+                transform: rotateX(-30deg) rotateY(-225deg);
+            }
+
+            &#show-4 {
+                transform: rotateX(-30deg) rotateY(-315deg);
+            }
+
+            &#show-5 {
+                transform: rotateX(-210deg) rotateY(-135deg);
+            }
+
+            &#show-6 {
+                transform: rotateX(-210deg) rotateY(-45deg);
+            }
+
+            &#show-7 {
+                transform: rotateX(-210deg) rotateY(45deg);
+            }
+
+            &#show-8 {
+                transform: rotateX(-210deg) rotateY(135deg);
+            }
+
+            .pyramid {
+                // these floats are a hack to keep certain sides visible when rotated in Chrome
+
+                &.top {
+                    transform: rotateY(0.00001deg);
+                }
+
+                &.bottom {
+                    transform: translateY($gem-dim * 2) rotateX(180deg)
+                        rotateY(179.99999deg);
+                }
+
+                .face {
+                    height: $gem-dim;
+                    width: $gem-dim;
+                    clip-path: polygon(50% 0, 100% 100%, 0 100%);
+                    overflow: auto;
+                    position: absolute;
+                    transform-origin: bottom;
+
+                    /* Chrome has problems pulling text on any surface
+                    transformed to a factor of 90deg. Rotate each face a factor of 45deg
+                    and then rotate the jewel 45deg to straighten. */
+
+                    &.side-1 {
+                        background-color: #003bde;
+                        transform: rotateY(45deg) translateZ($gem-dim / 2)
+                            rotateX(30deg);
+                    }
+
+                    &.side-2 {
+                        background-color: lightgreen;
+                        transform: rotateY(135deg) translateZ($gem-dim / 2)
+                            rotateX(30deg);
+                    }
+
+                    &.side-3 {
+                        background-color: lavender;
+                        transform: rotateY(225deg) translateZ($gem-dim / 2)
+                            rotateX(30deg);
+                    }
+
+                    &.side-4 {
+                        background-color: salmon;
+                        transform: rotateY(315deg) translateZ($gem-dim / 2)
+                            rotateX(30deg);
+                    }
+
+                    .side-triangle {
+                        height: 100%;
+                        width: 50%;
+
+                        &.left {
+                            float: left;
+                            shape-outside: polygon(0 0, 100% 0, 0 100%);
+                        }
+
+                        &.right {
+                            float: right;
+                            shape-outside: polygon(0 0, 100% 0, 100% 100%);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
