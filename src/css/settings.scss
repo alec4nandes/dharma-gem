@@ -1,0 +1,27 @@
+.settings {
+    width: 100%;
+    background-color: #000;
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+    position: fixed;
+    z-index: 999;
+
+    button {
+        background-color: transparent;
+        border: 0;
+        color: #add8e6;
+        font-family: "Archivo Narrow", sans-serif;
+        font-size: 1rem;
+        font-weight: bold;
+        text-decoration: underline;
+
+        &:hover {
+            color: #fff;
+            cursor: pointer;
+        }
+    }
+}

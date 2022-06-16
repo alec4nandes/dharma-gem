@@ -1,0 +1,270 @@
+@import url("https://fonts.googleapis.com/css2?family=Archivo+Narrow&display=swap");
+
+$gem-dim: 480px;
+$bg-1: #8dc3d4;
+$bg-2: #add8e6;
+$link-color: #004d80;
+$header-color: #000046;
+
+body {
+    min-width: $gem-dim + 200px;
+    background-color: #000;
+    font-family: "Archivo Narrow", sans-serif;
+    margin: 0;
+
+    .dharma-gem {
+        width: fit-content;
+        margin: auto;
+        position: relative;
+        z-index: 1;
+
+        .perspective-container {
+            height: $gem-dim;
+            width: $gem-dim;
+            margin: auto;
+            perspective: $gem-dim * 8;
+            position: relative;
+            top: -30px;
+
+            * {
+                transform-style: preserve-3d;
+            }
+
+            .jewel {
+                height: $gem-dim;
+                width: $gem-dim;
+                transform: translateZ(-2000px);
+                transform-origin: bottom;
+                transition: 1s;
+
+                &#show-1 {
+                    transform: rotateX(-30deg) rotateY(-45deg);
+                }
+
+                &#show-2 {
+                    transform: rotateX(-30deg) rotateY(-135deg);
+                }
+
+                &#show-3 {
+                    transform: rotateX(-30deg) rotateY(-225deg);
+                }
+
+                &#show-4 {
+                    transform: rotateX(-30deg) rotateY(-315deg);
+                }
+
+                &#show-5 {
+                    transform: rotateX(-210deg) rotateY(-135deg);
+                }
+
+                &#show-6 {
+                    transform: rotateX(-210deg) rotateY(-45deg);
+                }
+
+                &#show-7 {
+                    transform: rotateX(-210deg) rotateY(45deg);
+                }
+
+                &#show-8 {
+                    transform: rotateX(-210deg) rotateY(135deg);
+                }
+
+                .pyramid {
+                    &.bottom {
+                        transform: translateY($gem-dim * 2) rotateX(180deg)
+                            rotateY(180deg);
+                    }
+
+                    .face {
+                        height: $gem-dim;
+                        width: $gem-dim;
+                        clip-path: polygon(50% 0, 100% 100%, 0 100%);
+                        font-size: 0.9rem;
+                        overflow: auto;
+                        position: absolute;
+                        text-align: center;
+                        transform-origin: bottom;
+
+                        /* Chrome has problems pulling text on any surface
+                    transformed to a factor of 90deg. Rotate each face a factor of 45deg
+                    and then rotate the jewel 45deg to straighten. */
+
+                        &:nth-child(even) {
+                            background-color: $bg-1;
+                        }
+
+                        &:nth-child(odd) {
+                            background-color: $bg-2;
+                        }
+
+                        &.side-1 {
+                            transform: rotateY(45deg) translateZ($gem-dim / 2)
+                                rotateX(30deg);
+                        }
+
+                        &.side-2 {
+                            transform: rotateY(135deg) translateZ($gem-dim / 2)
+                                rotateX(30deg);
+                        }
+
+                        &.side-3 {
+                            transform: rotateY(225deg) translateZ($gem-dim / 2)
+                                rotateX(30deg);
+                        }
+
+                        &.side-4 {
+                            transform: rotateY(315deg) translateZ($gem-dim / 2)
+                                rotateX(30deg);
+                        }
+
+                        .side-triangle {
+                            height: 100%;
+                            width: 50%;
+
+                            &.left {
+                                float: left;
+                                shape-outside: polygon(0 0, 100% 0, 0 100%);
+                            }
+
+                            &.right {
+                                float: right;
+                                shape-outside: polygon(0 0, 100% 0, 100% 100%);
+                            }
+                        }
+
+                        * {
+                            margin: 0;
+                        }
+
+                        .face-title {
+                            width: 90px;
+                            display: inline-flex;
+                            flex-direction: column;
+                            justify-content: flex-end;
+                            position: relative;
+                        }
+
+                        h4 {
+                            color: $header-color;
+                        }
+
+                        .list-button {
+                            background-color: transparent;
+                            border: 0;
+                            color: $link-color;
+                            font-family: "Archivo Narrow", sans-serif;
+                            font-size: 0.9rem;
+                            font-weight: bold;
+                            padding: 0;
+
+                            &:hover {
+                                color: $header-color;
+                                cursor: pointer;
+                            }
+                        }
+
+                        ol,
+                        ul {
+                            list-style-type: none;
+
+                            li {
+                                margin-bottom: 10px;
+
+                                .list-marker {
+                                    color: $link-color;
+                                    font-weight: 700;
+
+                                    &.arrow {
+                                        font-size: 1.6rem;
+                                        line-height: 0;
+                                        position: relative;
+                                        top: 4px;
+                                    }
+                                }
+                            }
+                        }
+
+                        .sutta-link {
+                            color: $link-color;
+                            display: inline-block;
+                            font-weight: bold;
+                            text-decoration: none;
+
+                            &:hover {
+                                color: $header-color;
+                            }
+                        }
+
+                        .spacer {
+                            height: 10px;
+                        }
+
+                        .right-effort-table {
+                            display: inline;
+                            font-weight: bold;
+
+                            td,
+                            th {
+                                background-color: $bg-2;
+                            }
+
+                            tbody {
+                                tr {
+                                    td {
+                                        &:first-child {
+                                            line-height: 1em;
+                                        }
+                                    }
+
+                                    &:first-child {
+                                        td {
+                                            &:nth-child(2) {
+                                                background-color: rgb(
+                                                    219,
+                                                    219,
+                                                    255
+                                                );
+                                            }
+                                            &:nth-child(3) {
+                                                background-color: rgb(
+                                                    199,
+                                                    199,
+                                                    255
+                                                );
+                                            }
+                                        }
+                                    }
+                                    &:nth-child(2) {
+                                        td {
+                                            &:nth-child(2) {
+                                                background-color: rgb(
+                                                    180,
+                                                    231,
+                                                    251
+                                                );
+                                            }
+                                            &:nth-child(3) {
+                                                background-color: #8ad0ff;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            td,
+                            th {
+                                border: 1px solid black;
+                            }
+
+                            td {
+                                width: 100px;
+                                height: 40px;
+                                overflow: hidden;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
