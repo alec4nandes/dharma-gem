@@ -34,8 +34,7 @@ const dharmaLists = {
                 ],
             },
             {
-                definition:
-                    "The truth of the arising of suffering: desire or greed",
+                definition: "The truth of the arising of suffering",
                 english: "craving or thirst",
                 pali: "tanha",
                 parts: [
@@ -71,7 +70,7 @@ const dharmaLists = {
             },
         ],
     },
-    "Eightfold Path": {
+    "Noble Eightfold Path": {
         definition: "This is the way to the ending of suffering.",
         english: "noble path",
         pali: "maggha",
@@ -182,22 +181,16 @@ const dharmaLists = {
                             { definition: "body" },
                             { definition: "feelings" },
                             { definition: "general state of mind" },
+                            { definition: "Five Hinderances" },
+                            { definition: "Five Aggregates" },
                             {
-                                definition: "Specific Mental Objects",
-                                parts: [
-                                    { definition: "Five Hinderances" },
-                                    { definition: "Five Aggregates" },
-                                    {
-                                        definition:
-                                            "Six Internal and External Spheres of Sense",
-                                    },
-                                    {
-                                        definition:
-                                            "Seven Constituents of Awakening",
-                                    },
-                                    { definition: "Four Noble Truths" },
-                                ],
+                                definition:
+                                    "Six Internal and External Spheres of Sense",
                             },
+                            {
+                                definition: "Seven Constituents of Awakening",
+                            },
+                            { definition: "Four Noble Truths" },
                         ],
                         suttas: [
                             {
@@ -429,7 +422,7 @@ const dharmaLists = {
                 definition: "higher experiences",
                 parts: [
                     {
-                        defintion: "heaven",
+                        definition: "heaven",
                     },
                     {
                         definition: "asura",
