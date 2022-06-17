@@ -20,7 +20,7 @@ export default function App() {
 
     return (
         <>
-            {Object.values(listBoxes)}
+            {/* {Object.values(listBoxes)} */}
             <Settings {...{ setShowing }} />
             <DharmaGem {...{ showing, setShowing }} />
         </>

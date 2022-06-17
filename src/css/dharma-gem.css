@@ -4,6 +4,7 @@ body {
   background-color: #000;
   font-family: "Archivo Narrow", sans-serif;
   margin: 0;
+  overflow-y: scroll;
 }
 
 body .dharma-gem {
@@ -22,7 +23,6 @@ body .dharma-gem .perspective-container {
   -webkit-perspective: 3840px;
           perspective: 3840px;
   position: relative;
-  top: -30px;
 }
 
 body .dharma-gem .perspective-container * {
