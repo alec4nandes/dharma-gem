@@ -1,4 +1,5 @@
 .settings {
+    max-width: 100vw;
     min-height: 50px;
     width: 100%;
     background-color: #222;
@@ -7,6 +8,7 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 10px;
+    margin: auto;
     padding: 10px;
     position: sticky;
     top: 0;
@@ -27,23 +29,56 @@
         }
     }
 
-    select {
-        appearance: none;
-        background-color: transparent;
-        border: 0;
-        border-bottom: 1.5px solid #add8e6;
-        color: #add8e6;
-        font-family: "Archivo Narrow";
-        font-size: 1rem;
-        font-style: italic;
+    .select-wrapper {
+        display: flex;
+        align-items: center;
+        position: relative;
 
-        &:hover {
-            cursor: pointer;
+        & > * {
+            color: #add8e6;
+            font-family: "Archivo Narrow", sans-serif;
         }
 
-        option {
-            background-color: #fff;
-            color: #000;
+        &:hover {
+            * {
+                cursor: pointer;
+            }
+
+            select,
+            .select-arrow {
+                color: #fff;
+            }
+        }
+
+        select {
+            appearance: none;
+            background-color: transparent;
+            border: 1.5px solid #add8e6;
+            border-radius: 3px;
+            font-size: 1rem;
+            font-style: italic;
+            padding-left: 5px;
+            padding-right: 25px;
+            position: relative;
+            z-index: 2;
+
+            &:hover {
+                border-color: #fff;
+            }
+
+            option {
+                background-color: #fff;
+                color: #000;
+                font-style: normal;
+            }
+        }
+
+        .select-arrow {
+            font-size: 0.8rem;
+            line-height: 0;
+            position: absolute;
+            right: 5px;
+            z-index: 1;
         }
     }
 }

@@ -14,38 +14,63 @@
   cursor: pointer;
 }
 
+html,
+body,
+#root,
+.dharma-gem {
+  height: 100%;
+  width: 100vw;
+}
+
 body {
-  min-width: 680px;
   background-color: #000;
   font-family: "Archivo Narrow", sans-serif;
   margin: 0;
-  overflow-y: scroll;
 }
 
-body .dharma-gem {
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
+body #root {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+body #root .dharma-gem {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
   margin: auto;
+  overflow-x: auto;
+  overflow-y: scroll;
   position: relative;
   z-index: 1;
 }
 
-body .dharma-gem .perspective-container {
+body #root .dharma-gem .perspective-container {
   height: 480px;
-  width: 480px;
+  width: 680px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   margin: auto;
   -webkit-perspective: 3840px;
           perspective: 3840px;
   position: relative;
+  top: -50px;
 }
 
-body .dharma-gem .perspective-container * {
+body #root .dharma-gem .perspective-container * {
   -webkit-transform-style: preserve-3d;
           transform-style: preserve-3d;
 }
 
-body .dharma-gem .perspective-container .jewel {
+body #root .dharma-gem .perspective-container .jewel {
   height: 480px;
   width: 480px;
   -webkit-transform: translateZ(-2000px);
@@ -56,52 +81,52 @@ body .dharma-gem .perspective-container .jewel {
   transition: 1s;
 }
 
-body .dharma-gem .perspective-container .jewel#show-1 {
+body #root .dharma-gem .perspective-container .jewel#show-1 {
   -webkit-transform: rotateX(-30deg) rotateY(-45deg);
           transform: rotateX(-30deg) rotateY(-45deg);
 }
 
-body .dharma-gem .perspective-container .jewel#show-2 {
+body #root .dharma-gem .perspective-container .jewel#show-2 {
   -webkit-transform: rotateX(-30deg) rotateY(-135deg);
           transform: rotateX(-30deg) rotateY(-135deg);
 }
 
-body .dharma-gem .perspective-container .jewel#show-3 {
+body #root .dharma-gem .perspective-container .jewel#show-3 {
   -webkit-transform: rotateX(-30deg) rotateY(-225deg);
           transform: rotateX(-30deg) rotateY(-225deg);
 }
 
-body .dharma-gem .perspective-container .jewel#show-4 {
+body #root .dharma-gem .perspective-container .jewel#show-4 {
   -webkit-transform: rotateX(-30deg) rotateY(-315deg);
           transform: rotateX(-30deg) rotateY(-315deg);
 }
 
-body .dharma-gem .perspective-container .jewel#show-5 {
+body #root .dharma-gem .perspective-container .jewel#show-5 {
   -webkit-transform: rotateX(-210deg) rotateY(-135deg);
           transform: rotateX(-210deg) rotateY(-135deg);
 }
 
-body .dharma-gem .perspective-container .jewel#show-6 {
+body #root .dharma-gem .perspective-container .jewel#show-6 {
   -webkit-transform: rotateX(-210deg) rotateY(-45deg);
           transform: rotateX(-210deg) rotateY(-45deg);
 }
 
-body .dharma-gem .perspective-container .jewel#show-7 {
+body #root .dharma-gem .perspective-container .jewel#show-7 {
   -webkit-transform: rotateX(-210deg) rotateY(45deg);
           transform: rotateX(-210deg) rotateY(45deg);
 }
 
-body .dharma-gem .perspective-container .jewel#show-8 {
+body #root .dharma-gem .perspective-container .jewel#show-8 {
   -webkit-transform: rotateX(-210deg) rotateY(135deg);
           transform: rotateX(-210deg) rotateY(135deg);
 }
 
-body .dharma-gem .perspective-container .jewel .pyramid.bottom {
+body #root .dharma-gem .perspective-container .jewel .pyramid.bottom {
   -webkit-transform: translateY(960px) rotateX(180deg) rotateY(180deg);
           transform: translateY(960px) rotateX(180deg) rotateY(180deg);
 }
 
-body .dharma-gem .perspective-container .jewel .pyramid .face {
+body #root .dharma-gem .perspective-container .jewel .pyramid .face {
   height: 480px;
   width: 480px;
   -webkit-clip-path: polygon(50% 0, 100% 100%, 0 100%);
@@ -117,54 +142,54 @@ body .dharma-gem .perspective-container .jewel .pyramid .face {
                     and then rotate the jewel 45deg to straighten. */
 }
 
-body .dharma-gem .perspective-container .jewel .pyramid .face:nth-child(even) {
+body #root .dharma-gem .perspective-container .jewel .pyramid .face:nth-child(even) {
   background-color: #8dc3d4;
 }
 
-body .dharma-gem .perspective-container .jewel .pyramid .face:nth-child(odd) {
+body #root .dharma-gem .perspective-container .jewel .pyramid .face:nth-child(odd) {
   background-color: #add8e6;
 }
 
-body .dharma-gem .perspective-container .jewel .pyramid .face.side-1 {
+body #root .dharma-gem .perspective-container .jewel .pyramid .face.side-1 {
   -webkit-transform: rotateY(45deg) translateZ(240px) rotateX(30deg);
           transform: rotateY(45deg) translateZ(240px) rotateX(30deg);
 }
 
-body .dharma-gem .perspective-container .jewel .pyramid .face.side-2 {
+body #root .dharma-gem .perspective-container .jewel .pyramid .face.side-2 {
   -webkit-transform: rotateY(135deg) translateZ(240px) rotateX(30deg);
           transform: rotateY(135deg) translateZ(240px) rotateX(30deg);
 }
 
-body .dharma-gem .perspective-container .jewel .pyramid .face.side-3 {
+body #root .dharma-gem .perspective-container .jewel .pyramid .face.side-3 {
   -webkit-transform: rotateY(225deg) translateZ(240px) rotateX(30deg);
           transform: rotateY(225deg) translateZ(240px) rotateX(30deg);
 }
 
-body .dharma-gem .perspective-container .jewel .pyramid .face.side-4 {
+body #root .dharma-gem .perspective-container .jewel .pyramid .face.side-4 {
   -webkit-transform: rotateY(315deg) translateZ(240px) rotateX(30deg);
           transform: rotateY(315deg) translateZ(240px) rotateX(30deg);
 }
 
-body .dharma-gem .perspective-container .jewel .pyramid .face .side-triangle {
+body #root .dharma-gem .perspective-container .jewel .pyramid .face .side-triangle {
   height: 100%;
   width: 50%;
 }
 
-body .dharma-gem .perspective-container .jewel .pyramid .face .side-triangle.left {
+body #root .dharma-gem .perspective-container .jewel .pyramid .face .side-triangle.left {
   float: left;
   shape-outside: polygon(0 0, 100% 0, 0 100%);
 }
 
-body .dharma-gem .perspective-container .jewel .pyramid .face .side-triangle.right {
+body #root .dharma-gem .perspective-container .jewel .pyramid .face .side-triangle.right {
   float: right;
   shape-outside: polygon(0 0, 100% 0, 100% 100%);
 }
 
-body .dharma-gem .perspective-container .jewel .pyramid .face * {
+body #root .dharma-gem .perspective-container .jewel .pyramid .face * {
   margin: 0;
 }
 
-body .dharma-gem .perspective-container .jewel .pyramid .face .face-title {
+body #root .dharma-gem .perspective-container .jewel .pyramid .face .face-title {
   width: 90px;
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
@@ -179,87 +204,127 @@ body .dharma-gem .perspective-container .jewel .pyramid .face .face-title {
   position: relative;
 }
 
-body .dharma-gem .perspective-container .jewel .pyramid .face h4 {
+body #root .dharma-gem .perspective-container .jewel .pyramid .face h4 {
   color: #000046;
 }
 
-body .dharma-gem .perspective-container .jewel .pyramid .face ol,
-body .dharma-gem .perspective-container .jewel .pyramid .face ul {
+body #root .dharma-gem .perspective-container .jewel .pyramid .face ol,
+body #root .dharma-gem .perspective-container .jewel .pyramid .face ul {
   list-style-type: none;
 }
 
-body .dharma-gem .perspective-container .jewel .pyramid .face ol li,
-body .dharma-gem .perspective-container .jewel .pyramid .face ul li {
+body #root .dharma-gem .perspective-container .jewel .pyramid .face ol li,
+body #root .dharma-gem .perspective-container .jewel .pyramid .face ul li {
   margin-bottom: 10px;
 }
 
-body .dharma-gem .perspective-container .jewel .pyramid .face ol li .list-marker,
-body .dharma-gem .perspective-container .jewel .pyramid .face ul li .list-marker {
+body #root .dharma-gem .perspective-container .jewel .pyramid .face ol li .list-marker,
+body #root .dharma-gem .perspective-container .jewel .pyramid .face ul li .list-marker {
   color: #004d80;
   font-weight: 700;
 }
 
-body .dharma-gem .perspective-container .jewel .pyramid .face ol li .list-marker.arrow,
-body .dharma-gem .perspective-container .jewel .pyramid .face ul li .list-marker.arrow {
+body #root .dharma-gem .perspective-container .jewel .pyramid .face ol li .list-marker.arrow,
+body #root .dharma-gem .perspective-container .jewel .pyramid .face ul li .list-marker.arrow {
   font-size: 1.6rem;
   line-height: 0;
   position: relative;
   top: 4px;
 }
 
-body .dharma-gem .perspective-container .jewel .pyramid .face .sutta-link {
+body #root .dharma-gem .perspective-container .jewel .pyramid .face .sutta-link {
   color: #004d80;
   display: inline-block;
   font-weight: bold;
   text-decoration: none;
 }
 
-body .dharma-gem .perspective-container .jewel .pyramid .face .sutta-link:hover {
+body #root .dharma-gem .perspective-container .jewel .pyramid .face .sutta-link:hover {
   color: #000046;
 }
 
-body .dharma-gem .perspective-container .jewel .pyramid .face .spacer {
+body #root .dharma-gem .perspective-container .jewel .pyramid .face .spacer {
   height: 10px;
 }
 
-body .dharma-gem .perspective-container .jewel .pyramid .face .right-effort-table {
+body #root .dharma-gem .perspective-container .jewel .pyramid .face .right-effort-table {
   display: inline;
   font-weight: bold;
 }
 
-body .dharma-gem .perspective-container .jewel .pyramid .face .right-effort-table td,
-body .dharma-gem .perspective-container .jewel .pyramid .face .right-effort-table th {
+body #root .dharma-gem .perspective-container .jewel .pyramid .face .right-effort-table td,
+body #root .dharma-gem .perspective-container .jewel .pyramid .face .right-effort-table th {
   background-color: #add8e6;
 }
 
-body .dharma-gem .perspective-container .jewel .pyramid .face .right-effort-table tbody tr td:first-child {
+body #root .dharma-gem .perspective-container .jewel .pyramid .face .right-effort-table tbody tr td:first-child {
   line-height: 1em;
 }
 
-body .dharma-gem .perspective-container .jewel .pyramid .face .right-effort-table tbody tr:first-child td:nth-child(2) {
+body #root .dharma-gem .perspective-container .jewel .pyramid .face .right-effort-table tbody tr:first-child td:nth-child(2) {
   background-color: #dbdbff;
 }
 
-body .dharma-gem .perspective-container .jewel .pyramid .face .right-effort-table tbody tr:first-child td:nth-child(3) {
+body #root .dharma-gem .perspective-container .jewel .pyramid .face .right-effort-table tbody tr:first-child td:nth-child(3) {
   background-color: #c7c7ff;
 }
 
-body .dharma-gem .perspective-container .jewel .pyramid .face .right-effort-table tbody tr:nth-child(2) td:nth-child(2) {
+body #root .dharma-gem .perspective-container .jewel .pyramid .face .right-effort-table tbody tr:nth-child(2) td:nth-child(2) {
   background-color: #b4e7fb;
 }
 
-body .dharma-gem .perspective-container .jewel .pyramid .face .right-effort-table tbody tr:nth-child(2) td:nth-child(3) {
+body #root .dharma-gem .perspective-container .jewel .pyramid .face .right-effort-table tbody tr:nth-child(2) td:nth-child(3) {
   background-color: #8ad0ff;
 }
 
-body .dharma-gem .perspective-container .jewel .pyramid .face .right-effort-table td,
-body .dharma-gem .perspective-container .jewel .pyramid .face .right-effort-table th {
+body #root .dharma-gem .perspective-container .jewel .pyramid .face .right-effort-table td,
+body #root .dharma-gem .perspective-container .jewel .pyramid .face .right-effort-table th {
   border: 1px solid black;
 }
 
-body .dharma-gem .perspective-container .jewel .pyramid .face .right-effort-table td {
+body #root .dharma-gem .perspective-container .jewel .pyramid .face .right-effort-table td {
   width: 100px;
   height: 40px;
   overflow: hidden;
+}
+
+body #root footer {
+  height: 180px;
+  width: 100vw;
+  background-color: #222;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  color: #add8e6;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 15px;
+  padding: 15px;
+  position: absolute;
+  bottom: -180px;
+  text-align: center;
+}
+
+body #root footer a {
+  color: #fff;
+}
+
+body #root footer a:hover {
+  color: #add8e6;
+}
+
+body #root footer p {
+  max-width: 600px;
+  margin: 0;
 }
 /*# sourceMappingURL=dharma-gem.css.map */

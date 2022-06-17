@@ -29,7 +29,7 @@ function partsRecursive(parts, setListBox) {
     return parts?.map((part) => {
         const { definition, english, pali, parts, suttas } = part,
             paliWord = english && pali && (
-                <div className="pali-word">
+                <div key={`pali word ${pali}`} className="pali-word">
                     <div className="english">{english}</div>
                     <div className="pali">{pali}</div>
                 </div>

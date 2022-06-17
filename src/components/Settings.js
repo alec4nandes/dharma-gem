@@ -41,19 +41,22 @@ export default function Settings({ setShowing, listBox, setListBox }) {
                     {path}
                 </button>
             ))}
-            <select
-                onChange={(e) => setListBox(e.target.value)}
-                value={listBox || "choose"}
-            >
-                <option value="choose" disabled>
-                    Choose List
-                </option>
-                {sortedLists.map((key) => (
-                    <option key={`dharmaLists option ${key}`} value={key}>
-                        {key}
+            <div className="select-wrapper">
+                <select
+                    onChange={(e) => setListBox(e.target.value)}
+                    value={listBox || "choose"}
+                >
+                    <option value="choose" disabled>
+                        Choose List
                     </option>
-                ))}
-            </select>
+                    {sortedLists.map((key) => (
+                        <option key={`dharmaLists option ${key}`} value={key}>
+                            {key}
+                        </option>
+                    ))}
+                </select>
+                <div className="select-arrow">▼</div>
+            </div>
         </div>
     );
 }

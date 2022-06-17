@@ -20,6 +20,7 @@ export default function DharmaGem({
     setListBox,
 }) {
     const gemRef = useRef(),
+        scrollRef = useRef(),
         content = useMemo(
             () => makeContent({ setShowing, setListBox }),
             [setListBox, setShowing]
@@ -28,9 +29,13 @@ export default function DharmaGem({
 
     useEffect(() => {
         function centerGems(behavior) {
-            gemRef.current.scrollIntoView({
+            scrollRef.current.scrollTo({
+                left:
+                    window.innerWidth < gemRef.current.offsetWidth
+                        ? (gemRef.current.offsetWidth - window.innerWidth) / 2
+                        : 0,
+                top: 0,
                 behavior,
-                inline: "center",
             });
         }
         function centerGemsSmooth() {
@@ -45,11 +50,11 @@ export default function DharmaGem({
 
     return (
         <div
-            ref={gemRef}
+            ref={scrollRef}
             className="dharma-gem"
             style={{ visibility: loaded ? "visible" : "hidden" }}
         >
-            <div className="perspective-container">
+            <div ref={gemRef} className="perspective-container">
                 <div className="jewel" id={`show-${showing}`}>
                     <Pyramid {...{ content, section: "top" }} />
                     <Pyramid {...{ content, section: "bottom" }} />
