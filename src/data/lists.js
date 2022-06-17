@@ -3,7 +3,7 @@ const dharmaLists = {
         definition: "NEEDS DEFINITION",
         parts: [
             {
-                definition: "The truth of suffering",
+                definition: "the truth of suffering",
                 english: "unsatisfactoriness",
                 pali: "dukkha",
                 parts: [
@@ -34,7 +34,7 @@ const dharmaLists = {
                 ],
             },
             {
-                definition: "The truth of the arising of suffering",
+                definition: "the truth of the arising of suffering",
                 english: "craving or thirst",
                 pali: "tanha",
                 parts: [
@@ -50,7 +50,7 @@ const dharmaLists = {
                 ],
             },
             {
-                definition: "The truth of the cessation of suffering",
+                definition: "the truth of the cessation of suffering",
                 parts: [
                     {
                         definition: "detaching from craving, desire and greed",
@@ -59,7 +59,7 @@ const dharmaLists = {
             },
             {
                 definition:
-                    "The truth of the path leading to the cessation of suffering",
+                    "the truth of the path leading to the cessation of suffering",
                 parts: [
                     {
                         definition: "Noble Eightfold Path",

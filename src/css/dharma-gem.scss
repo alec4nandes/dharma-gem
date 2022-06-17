@@ -6,52 +6,6 @@ $bg-2: #add8e6;
 $link-color: #004d80;
 $header-color: #000046;
 
-.list {
-    width: 600px;
-    background-color: #fff;
-    border: 1px solid blue;
-    margin: 20px auto;
-    padding: 10px;
-    text-align: center;
-
-    .parts {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        padding: 10px;
-
-        &.column {
-            flex-direction: column;
-
-            .part {
-                background-color: $bg-2;
-            }
-        }
-
-        &.row,
-        .parts {
-            flex-direction: row;
-
-            .part {
-                background-color: $bg-1;
-                flex: 1;
-                justify-content: flex-start;
-            }
-        }
-
-        .part {
-            border: 1px solid red;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            flex-wrap: wrap;
-            padding: 15px;
-            text-align: center;
-        }
-    }
-}
-
 body {
     min-width: $gem-dim + 200px;
     background-color: #000;
