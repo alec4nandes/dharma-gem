@@ -1,5 +1,5 @@
 import "../css/dharma-gem.css";
-import React, { useEffect, useMemo, useRef } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import makeContent from "../data/display";
 
 const paths = [
@@ -23,23 +23,32 @@ export default function DharmaGem({
         content = useMemo(
             () => makeContent({ setShowing, setListBox }),
             [setListBox, setShowing]
-        );
+        ),
+        [loaded, setLoaded] = useState(false);
 
     useEffect(() => {
-        function centerGems() {
+        function centerGems(behavior) {
             gemRef.current.scrollIntoView({
-                behavior: "smooth",
+                behavior,
                 inline: "center",
             });
         }
-        centerGems();
-        !listBox && window.addEventListener("resize", centerGems);
+        function centerGemsSmooth() {
+            centerGems("smooth");
+        }
+        !listBox && window.addEventListener("resize", centerGemsSmooth);
+        centerGems(loaded ? "smooth" : "auto");
+        !loaded && setLoaded(true);
         // clean up event listener
-        return () => window.removeEventListener("resize", centerGems);
-    });
+        return () => window.removeEventListener("resize", centerGemsSmooth);
+    }, [listBox, loaded, showing]);
 
     return (
-        <div ref={gemRef} className="dharma-gem">
+        <div
+            ref={gemRef}
+            className="dharma-gem"
+            style={{ visibility: loaded ? "visible" : "hidden" }}
+        >
             <div className="perspective-container">
                 <div className="jewel" id={`show-${showing}`}>
                     <Pyramid {...{ content, section: "top" }} />

@@ -26,4 +26,24 @@
             cursor: pointer;
         }
     }
+
+    select {
+        appearance: none;
+        background-color: transparent;
+        border: 0;
+        border-bottom: 1.5px solid #add8e6;
+        color: #add8e6;
+        font-family: "Archivo Narrow";
+        font-size: 1rem;
+        font-style: italic;
+
+        &:hover {
+            cursor: pointer;
+        }
+
+        option {
+            background-color: #fff;
+            color: #000;
+        }
+    }
 }

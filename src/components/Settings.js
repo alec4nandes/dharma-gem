@@ -2,6 +2,34 @@ import "../css/settings.css";
 import { paths } from "./DharmaGem";
 import dharmaLists from "../data/lists";
 
+const numStrings = [
+    "One",
+    "Two",
+    "Three",
+    "Four",
+    "Five",
+    "Six",
+    "Seven",
+    "Eightfold",
+    "Eight",
+    "Nine",
+    "Ten",
+];
+
+function dharmaListSorter(a, b) {
+    const aFirst = a.split(" ")[0],
+        bFirst = b.split(" ")[0],
+        aIndex = numStrings.indexOf(aFirst),
+        bIndex = numStrings.indexOf(bFirst);
+    if (aIndex === bIndex) {
+        return a.localeCompare(b);
+    } else {
+        return aIndex - bIndex;
+    }
+}
+
+const sortedLists = Object.keys(dharmaLists).sort(dharmaListSorter);
+
 export default function Settings({ setShowing, listBox, setListBox }) {
     return (
         <div className="settings">
@@ -18,9 +46,9 @@ export default function Settings({ setShowing, listBox, setListBox }) {
                 value={listBox || "choose"}
             >
                 <option value="choose" disabled>
-                    CHOOSE LIST
+                    Choose List
                 </option>
-                {Object.keys(dharmaLists).map((key) => (
+                {sortedLists.map((key) => (
                     <option key={`dharmaLists option ${key}`} value={key}>
                         {key}
                     </option>
@@ -29,3 +57,5 @@ export default function Settings({ setShowing, listBox, setListBox }) {
         </div>
     );
 }
+
+export { sortedLists };

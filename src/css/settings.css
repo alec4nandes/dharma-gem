@@ -34,4 +34,26 @@
   color: #fff;
   cursor: pointer;
 }
+
+.settings select {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background-color: transparent;
+  border: 0;
+  border-bottom: 1.5px solid #add8e6;
+  color: #add8e6;
+  font-family: "Archivo Narrow";
+  font-size: 1rem;
+  font-style: italic;
+}
+
+.settings select:hover {
+  cursor: pointer;
+}
+
+.settings select option {
+  background-color: #fff;
+  color: #000;
+}
 /*# sourceMappingURL=settings.css.map */

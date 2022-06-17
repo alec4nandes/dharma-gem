@@ -1,4 +1,4 @@
-const dharmaLists = {
+let dharmaLists = {
     "Four Noble Truths": {
         definition: "NEEDS DEFINITION",
         parts: [
@@ -62,7 +62,7 @@ const dharmaLists = {
                     "the truth of the path leading to the cessation of suffering",
                 parts: [
                     {
-                        definition: "Noble Eightfold Path",
+                        definition: "Eightfold Path",
                         english: "noble path",
                         pali: "maggha",
                     },
@@ -70,7 +70,7 @@ const dharmaLists = {
             },
         ],
     },
-    "Noble Eightfold Path": {
+    "Eightfold Path": {
         definition: "This is the way to the ending of suffering.",
         english: "noble path",
         pali: "maggha",
@@ -539,6 +539,35 @@ const dharmaLists = {
     },
 };
 
-console.log(dharmaLists);
+// params: collector is a Map
+function getAllPaliWordsRecursive(values, collector) {
+    values
+        .flat()
+        .filter((value) => typeof value === "object")
+        .forEach((object) => {
+            const { english, pali } = object;
+            english && pali && collector.set(english, pali);
+            getAllPaliWordsRecursive(Object.values(object), collector);
+        });
+}
+
+function getAllPaliWords() {
+    const collector = new Map();
+    getAllPaliWordsRecursive(Object.values(dharmaLists), collector);
+    return [...collector.keys()]
+        .sort()
+        .map((key) => ({ english: key, pali: collector.get(key) }));
+}
+
+const paliList = {
+    "Pali Words": {
+        definition: "The vocabulary of the Buddha.",
+        parts: getAllPaliWords(),
+    },
+};
+
+dharmaLists = { ...dharmaLists, ...paliList };
+
+console.log(paliList);
 
 export default dharmaLists;

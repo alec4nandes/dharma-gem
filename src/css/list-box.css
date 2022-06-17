@@ -39,15 +39,18 @@
 
 .list-box .pali-word > div {
   padding: 10px;
+  border: 1px solid #8dc3d4;
 }
 
 .list-box .pali-word .english {
   background-color: lavender;
   border-radius: 10px 0 0 10px;
+  border-right: 0;
 }
 
 .list-box .pali-word .pali {
   background-color: #f0f0fc;
+  border-left: 0;
   border-radius: 0 10px 10px 0;
 }
 
