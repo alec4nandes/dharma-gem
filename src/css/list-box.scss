@@ -2,15 +2,27 @@ $list-box-bg-1: #8dc3d4;
 $list-box-bg-2: #add8e6;
 
 .list-box {
-    width: 600px;
+    max-width: 600px;
     background-color: #fff;
     border-radius: 15px;
-    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
     padding: 5px;
+    position: relative;
     text-align: center;
+    z-index: 888;
+
+    .close-list-box {
+        font-size: 1.6rem;
+        position: absolute;
+        right: 10px;
+        top: 5px;
+    }
 
     h2 {
-        margin-top: 0;
+        margin: 0;
     }
 
     .parts {

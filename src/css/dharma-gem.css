@@ -1,4 +1,19 @@
 @import url("https://fonts.googleapis.com/css2?family=Archivo+Narrow&display=swap");
+.list-button {
+  background-color: transparent;
+  border: 0;
+  color: #004d80;
+  font-family: "Archivo Narrow", sans-serif;
+  font-size: 0.9rem;
+  font-weight: bold;
+  padding: 0;
+}
+
+.list-button:hover {
+  color: #000046;
+  cursor: pointer;
+}
+
 body {
   min-width: 680px;
   background-color: #000;
@@ -166,21 +181,6 @@ body .dharma-gem .perspective-container .jewel .pyramid .face .face-title {
 
 body .dharma-gem .perspective-container .jewel .pyramid .face h4 {
   color: #000046;
-}
-
-body .dharma-gem .perspective-container .jewel .pyramid .face .list-button {
-  background-color: transparent;
-  border: 0;
-  color: #004d80;
-  font-family: "Archivo Narrow", sans-serif;
-  font-size: 0.9rem;
-  font-weight: bold;
-  padding: 0;
-}
-
-body .dharma-gem .perspective-container .jewel .pyramid .face .list-button:hover {
-  color: #000046;
-  cursor: pointer;
 }
 
 body .dharma-gem .perspective-container .jewel .pyramid .face ol,

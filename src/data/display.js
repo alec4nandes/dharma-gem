@@ -1,4 +1,4 @@
-export default function makeContent({ setShowing }) {
+export default function makeContent({ setShowing, setListBox }) {
     return {
         Understanding: {
             pali: "ditthi",
@@ -19,7 +19,10 @@ export default function makeContent({ setShowing }) {
                         <button
                             className="list-button"
                             onClick={(e) =>
-                                linkButtonHandler(e.target.innerHTML)
+                                listButtonHandler(
+                                    setListBox,
+                                    e.target.innerHTML
+                                )
                             }
                         >
                             Five Aggregates
@@ -145,28 +148,36 @@ export default function makeContent({ setShowing }) {
                     </h4>
                     <button
                         className="list-button"
-                        onClick={(e) => linkButtonHandler(e.target.innerHTML)}
+                        onClick={(e) =>
+                            listButtonHandler(setListBox, e.target.innerHTML)
+                        }
                     >
                         Five Hinderances
                     </button>
                     <br />
                     <button
                         className="list-button"
-                        onClick={(e) => linkButtonHandler(e.target.innerHTML)}
+                        onClick={(e) =>
+                            listButtonHandler(setListBox, e.target.innerHTML)
+                        }
                     >
                         Five Aggregates
                     </button>
                     <br />
                     <button
                         className="list-button"
-                        onClick={(e) => linkButtonHandler(e.target.innerHTML)}
+                        onClick={(e) =>
+                            listButtonHandler(setListBox, e.target.innerHTML)
+                        }
                     >
                         Six Internal and External Spheres of Sense
                     </button>
                     <br />
                     <button
                         className="list-button"
-                        onClick={(e) => linkButtonHandler(e.target.innerHTML)}
+                        onClick={(e) =>
+                            listButtonHandler(setListBox, e.target.innerHTML)
+                        }
                     >
                         Seven Constituents of Awakening
                     </button>
@@ -228,6 +239,7 @@ function makeList({ items, isOrdered }) {
     return isOrdered ? <ol>{result}</ol> : <ul>{result}</ul>;
 }
 
-function linkButtonHandler(name) {
-    alert(name);
+function listButtonHandler(setListBox, name) {
+    setListBox(name);
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
 }

@@ -1,28 +1,25 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Settings from "./Settings";
 import DharmaGem from "./DharmaGem";
-import dharmaLists from "../data/lists";
 import ListBox from "./ListBox";
 
-function makeListBoxes() {
-    const result = {};
-    Object.entries(dharmaLists).forEach((entry) => {
-        const [key] = entry;
-        result[key] = <ListBox {...{ entry }} />;
-    });
-    return result;
-}
-
-const listBoxes = makeListBoxes();
-
 export default function App() {
-    const [showing, setShowing] = useState(0);
+    const [showing, setShowing] = useState(0),
+        [listBox, setListBox] = useState(undefined);
+
+    useEffect(
+        () =>
+            listBox && window.scrollTo({ top: 0, left: 0, behavior: "smooth" }),
+        [listBox]
+    );
 
     return (
         <>
-            {/* {Object.values(listBoxes)} */}
-            <Settings {...{ setShowing }} />
-            <DharmaGem {...{ showing, setShowing }} />
+            <Settings {...{ setShowing, listBox, setListBox }} />
+            {listBox && (
+                <ListBox {...{ key: listBox, setListBox, name: listBox }} />
+            )}
+            <DharmaGem {...{ showing, setShowing, listBox, setListBox }} />
         </>
     );
 }

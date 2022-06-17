@@ -6,6 +6,21 @@ $bg-2: #add8e6;
 $link-color: #004d80;
 $header-color: #000046;
 
+.list-button {
+    background-color: transparent;
+    border: 0;
+    color: $link-color;
+    font-family: "Archivo Narrow", sans-serif;
+    font-size: 0.9rem;
+    font-weight: bold;
+    padding: 0;
+
+    &:hover {
+        color: $header-color;
+        cursor: pointer;
+    }
+}
+
 body {
     min-width: $gem-dim + 200px;
     background-color: #000;
@@ -146,21 +161,6 @@ body {
 
                         h4 {
                             color: $header-color;
-                        }
-
-                        .list-button {
-                            background-color: transparent;
-                            border: 0;
-                            color: $link-color;
-                            font-family: "Archivo Narrow", sans-serif;
-                            font-size: 0.9rem;
-                            font-weight: bold;
-                            padding: 0;
-
-                            &:hover {
-                                color: $header-color;
-                                cursor: pointer;
-                            }
                         }
 
                         ol,

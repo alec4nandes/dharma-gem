@@ -13,9 +13,17 @@ const paths = [
     "Concentration",
 ];
 
-export default function DharmaGem({ showing, setShowing }) {
+export default function DharmaGem({
+    showing,
+    setShowing,
+    listBox,
+    setListBox,
+}) {
     const gemRef = useRef(),
-        content = useMemo(() => makeContent({ setShowing }), [setShowing]);
+        content = useMemo(
+            () => makeContent({ setShowing, setListBox }),
+            [setListBox, setShowing]
+        );
 
     useEffect(() => {
         function centerGems() {
@@ -25,7 +33,7 @@ export default function DharmaGem({ showing, setShowing }) {
             });
         }
         centerGems();
-        window.addEventListener("resize", centerGems);
+        !listBox && window.addEventListener("resize", centerGems);
         // clean up event listener
         return () => window.removeEventListener("resize", centerGems);
     });

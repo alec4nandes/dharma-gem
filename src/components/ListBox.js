@@ -1,31 +1,44 @@
 import "../css/list-box.css";
 import dharmaLists from "../data/lists";
 
-export default function ListBox({ entry }) {
-    const [key, value] = entry;
+export default function ListBox({ name, setListBox }) {
+    const info = dharmaLists[name];
+
     return (
         <div className="list-box">
-            <h2>{key}</h2>
-            <h3>{value.definition}</h3>
+            <button
+                className="list-button close-list-box"
+                onClick={() => setListBox(undefined)}
+            >
+                X
+            </button>
+            <h2>{name}</h2>
+            <h3>{info.definition}</h3>
             <div
                 className={`parts ${
-                    value.parts.find((part) => part.parts) ? "column" : "row"
+                    info.parts.find((part) => part.parts) ? "column" : "row"
                 }`}
             >
-                {partsRecursive(value.parts)}
+                {partsRecursive(info.parts, setListBox)}
             </div>
         </div>
     );
 }
 
-function partsRecursive(parts) {
+function partsRecursive(parts, setListBox) {
     return parts?.map((part) => (
-        <div className="part">
+        <div key={part.definition || part.pali} className="part">
             {part.definition && (
                 <div className={part.parts ? "parts-title" : "definition"}>
-                    {part.definition}
-                    {Object.keys(dharmaLists).includes(part.definition) && (
-                        <>*</>
+                    {Object.keys(dharmaLists).includes(part.definition) ? (
+                        <button
+                            className="list-button"
+                            onClick={() => setListBox(part.definition)}
+                        >
+                            {part.definition}
+                        </button>
+                    ) : (
+                        part.definition
                     )}
                 </div>
             )}
@@ -35,7 +48,9 @@ function partsRecursive(parts) {
                 </div>
             )}
             {part.parts && (
-                <div className="parts">{partsRecursive(part.parts)}</div>
+                <div className="parts">
+                    {partsRecursive(part.parts, setListBox)}
+                </div>
             )}
             {part.suttas && (
                 <div className="list-box-suttas">
