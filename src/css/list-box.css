@@ -13,7 +13,7 @@
       -ms-flex-pack: center;
           justify-content: center;
   margin: auto;
-  padding: 5px;
+  padding: 10px;
   position: relative;
   text-align: center;
   z-index: 888;
@@ -28,6 +28,27 @@
 
 .list-box h2 {
   margin: 0;
+}
+
+.list-box .pali-word {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-style: italic;
+}
+
+.list-box .pali-word > div {
+  padding: 10px;
+}
+
+.list-box .pali-word .english {
+  background-color: lavender;
+  border-radius: 10px 0 0 10px;
+}
+
+.list-box .pali-word .pali {
+  background-color: #f0f0fc;
+  border-radius: 0 10px 10px 0;
 }
 
 .list-box .parts {

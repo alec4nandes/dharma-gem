@@ -9,7 +9,7 @@ $list-box-bg-2: #add8e6;
     flex-direction: column;
     justify-content: center;
     margin: auto;
-    padding: 5px;
+    padding: 10px;
     position: relative;
     text-align: center;
     z-index: 888;
@@ -23,6 +23,25 @@ $list-box-bg-2: #add8e6;
 
     h2 {
         margin: 0;
+    }
+
+    .pali-word {
+        display: flex;
+        font-style: italic;
+
+        & > div {
+            padding: 10px;
+        }
+
+        .english {
+            background-color: lavender;
+            border-radius: 10px 0 0 10px;
+        }
+
+        .pali {
+            background-color: rgb(240, 240, 252);
+            border-radius: 0 10px 10px 0;
+        }
     }
 
     .parts {

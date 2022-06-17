@@ -26,37 +26,45 @@ export default function ListBox({ name, setListBox }) {
 }
 
 function partsRecursive(parts, setListBox) {
-    return parts?.map((part) => (
-        <div key={part.definition || part.pali} className="part">
-            {part.definition && (
-                <div className={part.parts ? "parts-title" : "definition"}>
-                    {Object.keys(dharmaLists).includes(part.definition) ? (
-                        <button
-                            className="list-button"
-                            onClick={() => setListBox(part.definition)}
-                        >
-                            {part.definition}
-                        </button>
-                    ) : (
-                        part.definition
+    return parts?.map((part) => {
+        const { definition, english, pali, parts, suttas } = part,
+            paliWord = english && pali && (
+                <div className="pali-word">
+                    <div className="english">{english}</div>
+                    <div className="pali">{pali}</div>
+                </div>
+            ),
+            isOnlyPali = !definition && !parts && !suttas && paliWord;
+        return (
+            isOnlyPali || (
+                <div key={definition || pali} className="part">
+                    {definition && (
+                        <div className={parts ? "parts-title" : "definition"}>
+                            {Object.keys(dharmaLists).includes(definition) ? (
+                                <button
+                                    className="list-button"
+                                    onClick={() => setListBox(definition)}
+                                >
+                                    {definition}
+                                </button>
+                            ) : (
+                                definition
+                            )}
+                        </div>
+                    )}
+                    {paliWord}
+                    {parts && (
+                        <div className="parts">
+                            {partsRecursive(parts, setListBox)}
+                        </div>
+                    )}
+                    {suttas && (
+                        <div className="list-box-suttas">
+                            {suttas.map((sutta) => sutta.title).join(", ")}
+                        </div>
                     )}
                 </div>
-            )}
-            {part.english && part.pali && (
-                <div className="pali-word">
-                    [{part.english} ({part.pali})]
-                </div>
-            )}
-            {part.parts && (
-                <div className="parts">
-                    {partsRecursive(part.parts, setListBox)}
-                </div>
-            )}
-            {part.suttas && (
-                <div className="list-box-suttas">
-                    {part.suttas.map((sutta) => sutta.title).join(", ")}
-                </div>
-            )}
-        </div>
-    ));
+            )
+        );
+    });
 }
