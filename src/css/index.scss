@@ -1,0 +1,67 @@
+$footer-text-color: #add8e6;
+
+html,
+body,
+#root,
+.dharma-gem {
+    height: 100%;
+    width: 100vw;
+}
+
+body {
+    background-color: #000;
+    font-family: "Archivo Narrow", sans-serif;
+    margin: 0;
+    overflow: hidden;
+    text-size-adjust: none;
+    -moz-text-size-adjust: none;
+    -ms-text-size-adjust: none;
+    -webkit-text-size-adjust: none;
+
+    #root {
+        display: flex;
+        flex-direction: column;
+
+        footer {
+            width: 100vw;
+            background-color: #222;
+            box-sizing: border-box;
+            color: $footer-text-color;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 15px;
+            padding: 30px 15px;
+            position: absolute;
+            top: 100%;
+            text-align: center;
+            transition: 1s;
+            z-index: 999;
+
+            .close-footer {
+                color: #fff;
+                position: absolute;
+                right: 8px;
+                top: 8px;
+
+                &:hover {
+                    color: $footer-text-color;
+                }
+            }
+
+            a {
+                color: #fff;
+
+                &:hover {
+                    color: $footer-text-color;
+                }
+            }
+
+            p {
+                max-width: 600px;
+                margin: 0;
+            }
+        }
+    }
+}

@@ -42,6 +42,10 @@
   cursor: pointer;
 }
 
+.settings button.info-button {
+  text-decoration: none;
+}
+
 .settings .select-wrapper {
   display: -webkit-box;
   display: -ms-flexbox;

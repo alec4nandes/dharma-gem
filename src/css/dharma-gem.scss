@@ -1,8 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Archivo+Narrow&display=swap");
 
 $gem-dim: 480px;
-$bg-1: #8dc3d4;
-$bg-2: #add8e6;
+$face-bg-1: #8dc3d4;
+$face-bg-2: #add8e6;
 $link-color: #004d80;
 $header-color: #000046;
 
@@ -21,313 +21,254 @@ $header-color: #000046;
     }
 }
 
-html,
-body,
-#root,
 .dharma-gem {
-    height: 100%;
-    width: 100vw;
-}
+    flex: 1;
+    margin: auto;
+    overflow-x: auto;
+    overflow-y: scroll;
+    position: relative;
+    z-index: 1;
 
-body {
-    background-color: #000;
-    font-family: "Archivo Narrow", sans-serif;
-    margin: 0;
-    text-size-adjust: none;
-    -moz-text-size-adjust: none;
-    -ms-text-size-adjust: none;
-    -webkit-text-size-adjust: none;
-
-    #root {
+    &.v-align {
         display: flex;
-        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
 
-        .dharma-gem {
-            flex: 1;
-            margin: auto;
-            overflow-x: auto;
-            overflow-y: scroll;
-            position: relative;
-            z-index: 1;
+    .perspective-container {
+        height: $gem-dim;
+        width: $gem-dim + 200;
+        display: flex;
+        justify-content: center;
+        margin: auto;
+        perspective: $gem-dim * 8;
+        position: relative;
+        top: -50px;
 
-            &.v-align {
-                display: flex;
-                align-items: center;
-                justify-content: center;
+        * {
+            transform-style: preserve-3d;
+        }
+
+        .jewel {
+            height: $gem-dim;
+            width: $gem-dim;
+            transform: translateZ(-2000px);
+            transform-origin: bottom;
+            transition: 1s;
+
+            &#show-1 {
+                transform: rotateX(-30deg) rotateY(-45deg);
             }
 
-            .perspective-container {
-                height: $gem-dim;
-                width: $gem-dim + 200;
-                display: flex;
-                justify-content: center;
-                margin: auto;
-                perspective: $gem-dim * 8;
-                position: relative;
-                top: -50px;
+            &#show-2 {
+                transform: rotateX(-30deg) rotateY(-135deg);
+            }
 
-                * {
-                    transform-style: preserve-3d;
+            &#show-3 {
+                transform: rotateX(-30deg) rotateY(-225deg);
+            }
+
+            &#show-4 {
+                transform: rotateX(-30deg) rotateY(-315deg);
+            }
+
+            &#show-5 {
+                transform: rotateX(-210deg) rotateY(-135deg);
+            }
+
+            &#show-6 {
+                transform: rotateX(-210deg) rotateY(-45deg);
+            }
+
+            &#show-7 {
+                transform: rotateX(-210deg) rotateY(45deg);
+            }
+
+            &#show-8 {
+                transform: rotateX(-210deg) rotateY(135deg);
+            }
+
+            .pyramid {
+                &.bottom {
+                    transform: translateY($gem-dim * 2) rotateX(180deg)
+                        rotateY(180deg);
                 }
 
-                .jewel {
+                .face {
                     height: $gem-dim;
                     width: $gem-dim;
-                    transform: translateZ(-2000px);
+                    clip-path: polygon(50% 0, 100% 100%, 0 100%);
+                    font-size: 0.9rem;
+                    line-height: 1.1rem;
+                    overflow: auto;
+                    position: absolute;
+                    text-align: center;
                     transform-origin: bottom;
-                    transition: 1s;
 
-                    &#show-1 {
-                        transform: rotateX(-30deg) rotateY(-45deg);
-                    }
-
-                    &#show-2 {
-                        transform: rotateX(-30deg) rotateY(-135deg);
-                    }
-
-                    &#show-3 {
-                        transform: rotateX(-30deg) rotateY(-225deg);
-                    }
-
-                    &#show-4 {
-                        transform: rotateX(-30deg) rotateY(-315deg);
-                    }
-
-                    &#show-5 {
-                        transform: rotateX(-210deg) rotateY(-135deg);
-                    }
-
-                    &#show-6 {
-                        transform: rotateX(-210deg) rotateY(-45deg);
-                    }
-
-                    &#show-7 {
-                        transform: rotateX(-210deg) rotateY(45deg);
-                    }
-
-                    &#show-8 {
-                        transform: rotateX(-210deg) rotateY(135deg);
-                    }
-
-                    .pyramid {
-                        &.bottom {
-                            transform: translateY($gem-dim * 2) rotateX(180deg)
-                                rotateY(180deg);
-                        }
-
-                        .face {
-                            height: $gem-dim;
-                            width: $gem-dim;
-                            clip-path: polygon(50% 0, 100% 100%, 0 100%);
-                            font-size: 0.9rem;
-                            line-height: 1.1rem;
-                            overflow: auto;
-                            position: absolute;
-                            text-align: center;
-                            transform-origin: bottom;
-
-                            /* Chrome has problems pulling text on any surface
+                    /* Chrome has problems pulling text on any surface
                             transformed to a factor of 90deg. Rotate each face a factor of 45deg
                             and then rotate the jewel 45deg to straighten. */
 
-                            &:nth-child(even) {
-                                background-color: $bg-1;
-                            }
+                    &:nth-child(even) {
+                        background-color: $face-bg-1;
+                    }
 
-                            &:nth-child(odd) {
-                                background-color: $bg-2;
-                            }
+                    &:nth-child(odd) {
+                        background-color: $face-bg-2;
+                    }
 
-                            &.side-1 {
-                                transform: rotateY(45deg)
-                                    translateZ($gem-dim / 2) rotateX(30deg);
-                            }
+                    &.side-1 {
+                        transform: rotateY(45deg) translateZ($gem-dim / 2)
+                            rotateX(30deg);
+                    }
 
-                            &.side-2 {
-                                transform: rotateY(135deg)
-                                    translateZ($gem-dim / 2) rotateX(30deg);
-                            }
+                    &.side-2 {
+                        transform: rotateY(135deg) translateZ($gem-dim / 2)
+                            rotateX(30deg);
+                    }
 
-                            &.side-3 {
-                                transform: rotateY(225deg)
-                                    translateZ($gem-dim / 2) rotateX(30deg);
-                            }
+                    &.side-3 {
+                        transform: rotateY(225deg) translateZ($gem-dim / 2)
+                            rotateX(30deg);
+                    }
 
-                            &.side-4 {
-                                transform: rotateY(315deg)
-                                    translateZ($gem-dim / 2) rotateX(30deg);
-                            }
+                    &.side-4 {
+                        transform: rotateY(315deg) translateZ($gem-dim / 2)
+                            rotateX(30deg);
+                    }
 
-                            .side-triangle {
-                                height: 100%;
-                                width: 50%;
+                    .side-triangle {
+                        height: 100%;
+                        width: 50%;
 
-                                &.left {
-                                    float: left;
-                                    shape-outside: polygon(0 0, 100% 0, 0 100%);
-                                }
+                        &.left {
+                            float: left;
+                            shape-outside: polygon(0 0, 100% 0, 0 100%);
+                        }
 
-                                &.right {
-                                    float: right;
-                                    shape-outside: polygon(
-                                        0 0,
-                                        100% 0,
-                                        100% 100%
-                                    );
-                                }
-                            }
+                        &.right {
+                            float: right;
+                            shape-outside: polygon(0 0, 100% 0, 100% 100%);
+                        }
+                    }
 
-                            * {
-                                margin: 0;
-                            }
+                    * {
+                        margin: 0;
+                    }
 
-                            .face-title {
-                                width: 110px;
-                                display: inline-flex;
-                                flex-direction: column;
-                                justify-content: flex-end;
-                                line-height: 1.4rem;
-                                position: relative;
-                            }
+                    .face-title {
+                        width: 110px;
+                        display: inline-flex;
+                        flex-direction: column;
+                        justify-content: flex-end;
+                        line-height: 1.4rem;
+                        position: relative;
+                    }
 
-                            h4 {
-                                color: $header-color;
-                            }
+                    h4 {
+                        color: $header-color;
+                    }
 
-                            ol,
-                            ul {
-                                list-style-type: none;
+                    ol,
+                    ul {
+                        list-style-type: none;
 
-                                li {
-                                    margin-bottom: 10px;
+                        li {
+                            margin-bottom: 10px;
 
-                                    .list-marker {
-                                        color: $link-color;
-                                        font-weight: 700;
-
-                                        &.arrow {
-                                            font-size: 1.6rem;
-                                            line-height: 0;
-                                            position: relative;
-                                            top: 4px;
-                                        }
-                                    }
-                                }
-                            }
-
-                            .sutta-link {
+                            .list-marker {
                                 color: $link-color;
-                                display: inline-block;
-                                font-weight: bold;
-                                text-decoration: none;
+                                font-weight: 700;
 
-                                &:hover {
-                                    color: $header-color;
-                                }
-                            }
-
-                            .spacer {
-                                height: 10px;
-                            }
-
-                            .right-effort-table {
-                                display: inline;
-                                font-weight: bold;
-
-                                td,
-                                th {
-                                    background-color: $bg-2;
-                                }
-
-                                tbody {
-                                    tr {
-                                        td {
-                                            &:first-child {
-                                                line-height: 1em;
-                                            }
-                                        }
-
-                                        &:first-child {
-                                            td {
-                                                &:nth-child(2) {
-                                                    background-color: rgb(
-                                                        219,
-                                                        219,
-                                                        255
-                                                    );
-                                                }
-                                                &:nth-child(3) {
-                                                    background-color: rgb(
-                                                        199,
-                                                        199,
-                                                        255
-                                                    );
-                                                }
-                                            }
-                                        }
-                                        &:nth-child(2) {
-                                            td {
-                                                &:nth-child(2) {
-                                                    background-color: rgb(
-                                                        180,
-                                                        231,
-                                                        251
-                                                    );
-                                                }
-                                                &:nth-child(3) {
-                                                    background-color: #8ad0ff;
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-
-                                td,
-                                th {
-                                    border: 1px solid black;
-                                }
-
-                                td {
-                                    width: 100px;
-                                    height: 40px;
-                                    overflow: hidden;
+                                &.arrow {
+                                    font-size: 1.6rem;
+                                    line-height: 0;
+                                    position: relative;
+                                    top: 4px;
                                 }
                             }
                         }
                     }
+
+                    .sutta-link {
+                        color: $link-color;
+                        display: inline-block;
+                        font-weight: bold;
+                        text-decoration: none;
+
+                        &:hover {
+                            color: $header-color;
+                        }
+                    }
+
+                    .spacer {
+                        height: 10px;
+                    }
+
+                    .right-effort-table {
+                        display: inline;
+                        font-weight: bold;
+
+                        td,
+                        th {
+                            background-color: $face-bg-2;
+                        }
+
+                        tbody {
+                            tr {
+                                td {
+                                    &:first-child {
+                                        line-height: 1em;
+                                    }
+                                }
+
+                                &:first-child {
+                                    td {
+                                        &:nth-child(2) {
+                                            background-color: rgb(
+                                                219,
+                                                219,
+                                                255
+                                            );
+                                        }
+                                        &:nth-child(3) {
+                                            background-color: rgb(
+                                                199,
+                                                199,
+                                                255
+                                            );
+                                        }
+                                    }
+                                }
+                                &:nth-child(2) {
+                                    td {
+                                        &:nth-child(2) {
+                                            background-color: rgb(
+                                                180,
+                                                231,
+                                                251
+                                            );
+                                        }
+                                        &:nth-child(3) {
+                                            background-color: #8ad0ff;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        td,
+                        th {
+                            border: 1px solid black;
+                        }
+
+                        td {
+                            width: 100px;
+                            height: 40px;
+                            overflow: hidden;
+                        }
+                    }
                 }
-            }
-        }
-
-        footer {
-            $height: 180px;
-
-            height: $height;
-            width: 100vw;
-            background-color: #222;
-            box-sizing: border-box;
-            color: $bg-2;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            gap: 15px;
-            padding: 15px;
-            position: absolute;
-            bottom: -1 * $height;
-            text-align: center;
-
-            a {
-                color: #fff;
-
-                &:hover {
-                    color: $bg-2;
-                }
-            }
-
-            p {
-                max-width: 600px;
-                margin: 0;
             }
         }
     }

@@ -30,9 +30,22 @@ function dharmaListSorter(a, b) {
 
 const sortedLists = Object.keys(dharmaLists).sort(dharmaListSorter);
 
-export default function Settings({ setShowing, listBox, setListBox }) {
+export default function Settings({
+    setShowing,
+    listBox,
+    setListBox,
+    footerRef,
+}) {
     return (
         <div className="settings">
+            <button
+                className="info-button"
+                onClick={() =>
+                    (footerRef.current.style.top = `calc(100% - ${footerRef.current.offsetHeight}px)`)
+                }
+            >
+                ⓘ
+            </button>
             {paths.map((path, i) => (
                 <button
                     key={`show side ${path}`}

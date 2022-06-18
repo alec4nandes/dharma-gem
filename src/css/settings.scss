@@ -33,6 +33,10 @@
             color: #fff;
             cursor: pointer;
         }
+
+        &.info-button {
+            text-decoration: none;
+        }
     }
 
     .select-wrapper {

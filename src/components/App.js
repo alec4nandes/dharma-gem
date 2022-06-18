@@ -1,16 +1,23 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Settings from "./Settings";
 import DharmaGem from "./DharmaGem";
 
 export default function App() {
     const [showing, setShowing] = useState(0),
-        [listBox, setListBox] = useState(undefined);
+        [listBox, setListBox] = useState(undefined),
+        footerRef = useRef();
 
     return (
         <>
-            <Settings {...{ setShowing, listBox, setListBox }} />
+            <Settings {...{ setShowing, listBox, setListBox, footerRef }} />
             <DharmaGem {...{ showing, setShowing, listBox, setListBox }} />
-            <footer>
+            <footer ref={footerRef}>
+                <button
+                    className="list-button close-footer"
+                    onClick={() => (footerRef.current.style.top = "100%")}
+                >
+                    X
+                </button>
                 <p>
                     Dharma Gem is a fun, animated way to explore the beauty of
                     the Buddha’s teachings.
