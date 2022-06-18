@@ -13,7 +13,7 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  gap: 15px;
+  gap: 8px 15px;
   margin: auto;
   padding: 10px 15px;
   position: -webkit-sticky;
