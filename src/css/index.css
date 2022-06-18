@@ -3,7 +3,7 @@ body,
 #root,
 .dharma-gem {
   height: 100%;
-  width: 100vw;
+  width: 100%;
 }
 
 body {
@@ -28,7 +28,7 @@ body #root {
 }
 
 body #root footer {
-  width: 100vw;
+  width: 100%;
   background-color: #222;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -47,7 +47,7 @@ body #root footer {
       -ms-flex-direction: column;
           flex-direction: column;
   gap: 15px;
-  padding: 30px 15px;
+  padding: 30px;
   position: absolute;
   top: 100%;
   text-align: center;
