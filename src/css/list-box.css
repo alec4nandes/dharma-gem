@@ -22,7 +22,7 @@
   z-index: 888;
 }
 
-.list-box .close-list-box {
+.list-box .list-button.close-list-box {
   font-size: 1.6rem;
   position: absolute;
   right: 10px;
