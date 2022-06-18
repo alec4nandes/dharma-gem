@@ -37,6 +37,10 @@
           justify-content: center;
 }
 
+.dharma-gem .list-button {
+  font-size: 0.9rem;
+}
+
 .dharma-gem .perspective-container {
   height: 480px;
   width: 680px;

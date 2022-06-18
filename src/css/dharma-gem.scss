@@ -35,6 +35,10 @@ $header-color: #000046;
         justify-content: center;
     }
 
+    .list-button {
+        font-size: 0.9rem;
+    }
+
     .perspective-container {
         height: $gem-dim;
         width: $gem-dim + 200;
