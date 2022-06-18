@@ -11,9 +11,9 @@ $header-color: #000046;
     border: 0;
     color: $link-color;
     font-family: "Archivo Narrow", sans-serif;
-    font-size: 0.9rem;
     font-weight: bold;
     padding: 0;
+    text-align: left;
 
     &:hover {
         color: $header-color;

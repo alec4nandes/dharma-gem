@@ -4,9 +4,9 @@
   border: 0;
   color: #004d80;
   font-family: "Archivo Narrow", sans-serif;
-  font-size: 0.9rem;
   font-weight: bold;
   padding: 0;
+  text-align: left;
 }
 
 .list-button:hover {

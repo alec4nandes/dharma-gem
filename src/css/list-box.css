@@ -33,6 +33,10 @@
   margin: 0 25px;
 }
 
+.list-box .list-button {
+  font-size: 1rem;
+}
+
 .list-box .pali-word {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -55,6 +59,14 @@
   background-color: #f0f0fc;
   border-left: 0;
   border-radius: 0 10px 10px 0;
+}
+
+.list-box .list-box-suttas a {
+  text-decoration: none;
+}
+
+.list-box ul li {
+  text-align: left;
 }
 
 .list-box .parts {
@@ -117,6 +129,9 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;

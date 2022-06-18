@@ -27,6 +27,10 @@ $list-box-bg-2: #add8e6;
         margin: 0 25px;
     }
 
+    .list-button {
+        font-size: 1rem;
+    }
+
     .pali-word {
         display: flex;
         font-style: italic;
@@ -46,6 +50,18 @@ $list-box-bg-2: #add8e6;
             background-color: rgb(240, 240, 252);
             border-left: 0;
             border-radius: 0 10px 10px 0;
+        }
+    }
+
+    .list-box-suttas {
+        a {
+            text-decoration: none;
+        }
+    }
+
+    ul {
+        li {
+            text-align: left;
         }
     }
 
@@ -91,6 +107,7 @@ $list-box-bg-2: #add8e6;
             display: flex;
             align-items: center;
             justify-content: center;
+            flex: 1;
             flex-direction: column;
             flex-wrap: wrap;
             gap: 10px;

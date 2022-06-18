@@ -33,6 +33,19 @@ export default function ListBox({ name, setListBox }) {
     );
 }
 
+function formatDefinition(definition, setListBox) {
+    return Object.keys(dharmaLists).includes(definition) ? (
+        <button
+            className="list-button"
+            onClick={() => listButtonHandler(setListBox, definition)}
+        >
+            {definition}
+        </button>
+    ) : (
+        definition
+    );
+}
+
 function partsRecursive(parts, setListBox) {
     return parts?.map((part) => {
         const { definition, english, pali, parts, suttas } = part,
@@ -48,32 +61,51 @@ function partsRecursive(parts, setListBox) {
                 <div key={definition || pali} className="part">
                     {definition && (
                         <div className={parts ? "parts-title" : "definition"}>
-                            {Object.keys(dharmaLists).includes(definition) ? (
-                                <button
-                                    className="list-button"
-                                    onClick={() =>
-                                        listButtonHandler(
-                                            setListBox,
-                                            definition
-                                        )
-                                    }
-                                >
-                                    {definition}
-                                </button>
-                            ) : (
-                                definition
-                            )}
+                            {formatDefinition(definition, setListBox)}
                         </div>
                     )}
                     {paliWord}
                     {parts && (
                         <div className="parts">
-                            {partsRecursive(parts, setListBox)}
+                            {parts.filter((obj) => {
+                                const keys = Object.keys(obj);
+                                return (
+                                    keys.length === 1 &&
+                                    keys[0] === "definition"
+                                );
+                            }).length === parts.length ? (
+                                <ul>
+                                    {parts.map((part) => (
+                                        <li key={part.definition}>
+                                            {formatDefinition(
+                                                part.definition,
+                                                setListBox
+                                            )}
+                                        </li>
+                                    ))}
+                                </ul>
+                            ) : (
+                                partsRecursive(parts, setListBox)
+                            )}
                         </div>
                     )}
                     {suttas && (
                         <div className="list-box-suttas">
-                            {suttas.map((sutta) => sutta.title).join(", ")}
+                            <div className="parts-title">Suttas:</div>
+                            <ul>
+                                {suttas.map((sutta) => (
+                                    <li key={sutta.title}>
+                                        <a
+                                            className="list-button"
+                                            href={sutta.link}
+                                            target="_blank"
+                                            rel="noreferrer"
+                                        >
+                                            {sutta.title}
+                                        </a>
+                                    </li>
+                                ))}
+                            </ul>
                         </div>
                     )}
                 </div>
