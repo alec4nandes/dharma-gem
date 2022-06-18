@@ -18,12 +18,7 @@ export default function makeContent({ setShowing, setListBox }) {
                         unfulfilled desires,{" "}
                         <button
                             className="list-button"
-                            onClick={(e) =>
-                                listButtonHandler(
-                                    setListBox,
-                                    e.target.innerHTML
-                                )
-                            }
+                            onClick={(e) => setListBox(e.target.innerHTML)}
                         >
                             Five Aggregates
                         </button>
@@ -148,36 +143,28 @@ export default function makeContent({ setShowing, setListBox }) {
                     </h4>
                     <button
                         className="list-button"
-                        onClick={(e) =>
-                            listButtonHandler(setListBox, e.target.innerHTML)
-                        }
+                        onClick={(e) => setListBox(e.target.innerHTML)}
                     >
                         Five Hinderances
                     </button>
                     <br />
                     <button
                         className="list-button"
-                        onClick={(e) =>
-                            listButtonHandler(setListBox, e.target.innerHTML)
-                        }
+                        onClick={(e) => setListBox(e.target.innerHTML)}
                     >
                         Five Aggregates
                     </button>
                     <br />
                     <button
                         className="list-button"
-                        onClick={(e) =>
-                            listButtonHandler(setListBox, e.target.innerHTML)
-                        }
+                        onClick={(e) => setListBox(e.target.innerHTML)}
                     >
                         Six Internal and External Spheres of Sense
                     </button>
                     <br />
                     <button
                         className="list-button"
-                        onClick={(e) =>
-                            listButtonHandler(setListBox, e.target.innerHTML)
-                        }
+                        onClick={(e) => setListBox(e.target.innerHTML)}
                     >
                         Seven Constituents of Awakening
                     </button>
@@ -238,10 +225,3 @@ function makeList({ items, isOrdered }) {
     ));
     return isOrdered ? <ol>{result}</ol> : <ul>{result}</ul>;
 }
-
-function listButtonHandler(setListBox, name) {
-    setListBox(name);
-    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-}
-
-export { listButtonHandler };

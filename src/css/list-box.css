@@ -85,7 +85,10 @@
           flex-direction: column;
 }
 
-.list-box .parts.row,
+.list-box .parts .parts-title {
+  font-weight: bold;
+}
+
 .list-box .parts .parts {
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
@@ -96,23 +99,15 @@
           justify-content: center;
 }
 
-.list-box .parts.row .part,
-.list-box .parts .parts .part {
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-}
-
-.list-box .parts .parts-title {
-  font-weight: bold;
-}
-
 .list-box .parts .parts .parts .part {
   background-color: #add8e6;
 }
 
 .list-box .parts .parts .part {
   background-color: #8dc3d4;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
 }
 
 .list-box .parts .part {
@@ -143,7 +138,7 @@
   text-align: center;
 }
 
-.list-box .parts .part.simple {
+.list-box .parts .part.row {
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
       -ms-flex-direction: row;

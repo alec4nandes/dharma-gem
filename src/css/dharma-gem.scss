@@ -22,255 +22,228 @@ $header-color: #000046;
 }
 
 .dharma-gem {
-    flex: 1;
+    height: $gem-dim;
+    width: $gem-dim + 200;
+    display: flex;
+    justify-content: center;
     margin: auto;
-    overflow-x: auto;
-    overflow-y: scroll;
+    perspective: $gem-dim * 8;
     position: relative;
-    z-index: 1;
+    top: -50px;
 
-    &.v-align {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+    * {
+        transform-style: preserve-3d;
     }
 
-    .list-button {
-        font-size: 0.9rem;
-    }
-
-    .perspective-container {
+    .jewel {
         height: $gem-dim;
-        width: $gem-dim + 200;
-        display: flex;
-        justify-content: center;
-        margin: auto;
-        perspective: $gem-dim * 8;
-        position: relative;
-        top: -50px;
+        width: $gem-dim;
+        transform: translateZ(-2000px);
+        transform-origin: bottom;
+        transition: 1s;
 
-        * {
-            transform-style: preserve-3d;
+        &#show-1 {
+            transform: rotateX(-30deg) rotateY(-45deg);
         }
 
-        .jewel {
-            height: $gem-dim;
-            width: $gem-dim;
-            transform: translateZ(-2000px);
-            transform-origin: bottom;
-            transition: 1s;
+        &#show-2 {
+            transform: rotateX(-30deg) rotateY(-135deg);
+        }
 
-            &#show-1 {
-                transform: rotateX(-30deg) rotateY(-45deg);
+        &#show-3 {
+            transform: rotateX(-30deg) rotateY(-225deg);
+        }
+
+        &#show-4 {
+            transform: rotateX(-30deg) rotateY(-315deg);
+        }
+
+        &#show-5 {
+            transform: rotateX(-210deg) rotateY(-135deg);
+        }
+
+        &#show-6 {
+            transform: rotateX(-210deg) rotateY(-45deg);
+        }
+
+        &#show-7 {
+            transform: rotateX(-210deg) rotateY(45deg);
+        }
+
+        &#show-8 {
+            transform: rotateX(-210deg) rotateY(135deg);
+        }
+
+        .pyramid {
+            &.bottom {
+                transform: translateY($gem-dim * 2) rotateX(180deg)
+                    rotateY(180deg);
             }
 
-            &#show-2 {
-                transform: rotateX(-30deg) rotateY(-135deg);
-            }
+            .face {
+                height: $gem-dim;
+                width: $gem-dim;
+                clip-path: polygon(50% 0, 100% 100%, 0 100%);
+                font-size: 0.9rem;
+                line-height: 1.1rem;
+                overflow: auto;
+                position: absolute;
+                text-align: center;
+                transform-origin: bottom;
 
-            &#show-3 {
-                transform: rotateX(-30deg) rotateY(-225deg);
-            }
+                /* Chrome has problems pulling text on any surface
+                transformed to a factor of 90deg. Rotate each face a factor of 45deg
+                and then rotate the jewel 45deg to straighten. */
 
-            &#show-4 {
-                transform: rotateX(-30deg) rotateY(-315deg);
-            }
-
-            &#show-5 {
-                transform: rotateX(-210deg) rotateY(-135deg);
-            }
-
-            &#show-6 {
-                transform: rotateX(-210deg) rotateY(-45deg);
-            }
-
-            &#show-7 {
-                transform: rotateX(-210deg) rotateY(45deg);
-            }
-
-            &#show-8 {
-                transform: rotateX(-210deg) rotateY(135deg);
-            }
-
-            .pyramid {
-                &.bottom {
-                    transform: translateY($gem-dim * 2) rotateX(180deg)
-                        rotateY(180deg);
+                &:nth-child(even) {
+                    background-color: $face-bg-1;
                 }
 
-                .face {
-                    height: $gem-dim;
-                    width: $gem-dim;
-                    clip-path: polygon(50% 0, 100% 100%, 0 100%);
-                    font-size: 0.9rem;
-                    line-height: 1.1rem;
-                    overflow: auto;
-                    position: absolute;
-                    text-align: center;
-                    transform-origin: bottom;
+                &:nth-child(odd) {
+                    background-color: $face-bg-2;
+                }
 
-                    /* Chrome has problems pulling text on any surface
-                            transformed to a factor of 90deg. Rotate each face a factor of 45deg
-                            and then rotate the jewel 45deg to straighten. */
+                &.side-1 {
+                    transform: rotateY(45deg) translateZ($gem-dim / 2)
+                        rotateX(30deg);
+                }
 
-                    &:nth-child(even) {
-                        background-color: $face-bg-1;
+                &.side-2 {
+                    transform: rotateY(135deg) translateZ($gem-dim / 2)
+                        rotateX(30deg);
+                }
+
+                &.side-3 {
+                    transform: rotateY(225deg) translateZ($gem-dim / 2)
+                        rotateX(30deg);
+                }
+
+                &.side-4 {
+                    transform: rotateY(315deg) translateZ($gem-dim / 2)
+                        rotateX(30deg);
+                }
+
+                .side-triangle {
+                    height: 100%;
+                    width: 50%;
+
+                    &.left {
+                        float: left;
+                        shape-outside: polygon(0 0, 100% 0, 0 100%);
                     }
 
-                    &:nth-child(odd) {
+                    &.right {
+                        float: right;
+                        shape-outside: polygon(0 0, 100% 0, 100% 100%);
+                    }
+                }
+
+                * {
+                    margin: 0;
+                }
+
+                .face-title {
+                    width: 110px;
+                    display: inline-flex;
+                    flex-direction: column;
+                    justify-content: flex-end;
+                    line-height: 1.4rem;
+                    position: relative;
+                }
+
+                h4 {
+                    color: $header-color;
+                }
+
+                .list-button {
+                    font-size: 0.9rem;
+                }
+
+                ol,
+                ul {
+                    list-style-type: none;
+
+                    li {
+                        margin-bottom: 10px;
+
+                        .list-marker {
+                            color: $link-color;
+                            font-weight: 700;
+
+                            &.arrow {
+                                font-size: 1.6rem;
+                                line-height: 0;
+                                position: relative;
+                                top: 4px;
+                            }
+                        }
+                    }
+                }
+
+                .sutta-link {
+                    color: $link-color;
+                    display: inline-block;
+                    font-weight: bold;
+                    text-decoration: none;
+
+                    &:hover {
+                        color: $header-color;
+                    }
+                }
+
+                .spacer {
+                    height: 10px;
+                }
+
+                .right-effort-table {
+                    display: inline;
+                    font-weight: bold;
+
+                    td,
+                    th {
                         background-color: $face-bg-2;
                     }
 
-                    &.side-1 {
-                        transform: rotateY(45deg) translateZ($gem-dim / 2)
-                            rotateX(30deg);
-                    }
-
-                    &.side-2 {
-                        transform: rotateY(135deg) translateZ($gem-dim / 2)
-                            rotateX(30deg);
-                    }
-
-                    &.side-3 {
-                        transform: rotateY(225deg) translateZ($gem-dim / 2)
-                            rotateX(30deg);
-                    }
-
-                    &.side-4 {
-                        transform: rotateY(315deg) translateZ($gem-dim / 2)
-                            rotateX(30deg);
-                    }
-
-                    .side-triangle {
-                        height: 100%;
-                        width: 50%;
-
-                        &.left {
-                            float: left;
-                            shape-outside: polygon(0 0, 100% 0, 0 100%);
-                        }
-
-                        &.right {
-                            float: right;
-                            shape-outside: polygon(0 0, 100% 0, 100% 100%);
-                        }
-                    }
-
-                    * {
-                        margin: 0;
-                    }
-
-                    .face-title {
-                        width: 110px;
-                        display: inline-flex;
-                        flex-direction: column;
-                        justify-content: flex-end;
-                        line-height: 1.4rem;
-                        position: relative;
-                    }
-
-                    h4 {
-                        color: $header-color;
-                    }
-
-                    ol,
-                    ul {
-                        list-style-type: none;
-
-                        li {
-                            margin-bottom: 10px;
-
-                            .list-marker {
-                                color: $link-color;
-                                font-weight: 700;
-
-                                &.arrow {
-                                    font-size: 1.6rem;
-                                    line-height: 0;
-                                    position: relative;
-                                    top: 4px;
-                                }
-                            }
-                        }
-                    }
-
-                    .sutta-link {
-                        color: $link-color;
-                        display: inline-block;
-                        font-weight: bold;
-                        text-decoration: none;
-
-                        &:hover {
-                            color: $header-color;
-                        }
-                    }
-
-                    .spacer {
-                        height: 10px;
-                    }
-
-                    .right-effort-table {
-                        display: inline;
-                        font-weight: bold;
-
-                        td,
-                        th {
-                            background-color: $face-bg-2;
-                        }
-
-                        tbody {
-                            tr {
-                                td {
-                                    &:first-child {
-                                        line-height: 1em;
-                                    }
-                                }
-
+                    tbody {
+                        tr {
+                            td {
                                 &:first-child {
-                                    td {
-                                        &:nth-child(2) {
-                                            background-color: rgb(
-                                                219,
-                                                219,
-                                                255
-                                            );
-                                        }
-                                        &:nth-child(3) {
-                                            background-color: rgb(
-                                                199,
-                                                199,
-                                                255
-                                            );
-                                        }
+                                    line-height: 1em;
+                                }
+                            }
+
+                            &:first-child {
+                                td {
+                                    &:nth-child(2) {
+                                        background-color: rgb(219, 219, 255);
+                                    }
+                                    &:nth-child(3) {
+                                        background-color: rgb(199, 199, 255);
                                     }
                                 }
-                                &:nth-child(2) {
-                                    td {
-                                        &:nth-child(2) {
-                                            background-color: rgb(
-                                                180,
-                                                231,
-                                                251
-                                            );
-                                        }
-                                        &:nth-child(3) {
-                                            background-color: #8ad0ff;
-                                        }
+                            }
+                            &:nth-child(2) {
+                                td {
+                                    &:nth-child(2) {
+                                        background-color: rgb(180, 231, 251);
+                                    }
+                                    &:nth-child(3) {
+                                        background-color: #8ad0ff;
                                     }
                                 }
                             }
                         }
+                    }
 
-                        td,
-                        th {
-                            border: 1px solid black;
-                        }
+                    td,
+                    th {
+                        border: 1px solid black;
+                    }
 
-                        td {
-                            width: 100px;
-                            height: 40px;
-                            overflow: hidden;
-                        }
+                    td {
+                        width: 100px;
+                        height: 40px;
+                        overflow: hidden;
                     }
                 }
             }

@@ -1,7 +1,6 @@
 import "../css/dharma-gem.css";
 import React, { useEffect, useMemo, useRef } from "react";
 import makeContent from "../data/display";
-import ListBox from "./ListBox";
 
 const paths = [
     "Understanding",
@@ -17,11 +16,10 @@ const paths = [
 export default function DharmaGem({
     showing,
     setShowing,
-    listBox,
     setListBox,
+    scrollRef,
 }) {
     const gemRef = useRef(),
-        scrollRef = useRef(),
         content = useMemo(
             () => makeContent({ setShowing, setListBox }),
             [setListBox, setShowing]
@@ -29,16 +27,14 @@ export default function DharmaGem({
 
     useEffect(() => {
         function centerGems() {
-            gemRef.current &&
-                scrollRef.current?.scrollTo({
-                    left:
-                        window.innerWidth < gemRef.current.offsetWidth
-                            ? (gemRef.current.offsetWidth - window.innerWidth) /
-                              2
-                            : 0,
-                    top: 0,
-                    behavior: "smooth",
-                });
+            scrollRef.current.scrollTo({
+                left:
+                    window.innerWidth < gemRef.current.offsetWidth
+                        ? (gemRef.current.offsetWidth - window.innerWidth) / 2
+                        : 0,
+                top: 0,
+                behavior: "smooth",
+            });
         }
         centerGems();
         window.addEventListener("resize", centerGems);
@@ -46,26 +42,11 @@ export default function DharmaGem({
     });
 
     return (
-        <div
-            ref={scrollRef}
-            className={`dharma-gem ${listBox ? "v-align" : ""}`}
-        >
-            {listBox ? (
-                <ListBox
-                    {...{
-                        key: listBox,
-                        setListBox,
-                        name: listBox,
-                    }}
-                />
-            ) : (
-                <div ref={gemRef} className="perspective-container">
-                    <div className="jewel" id={`show-${showing}`}>
-                        <Pyramid {...{ content, section: "top" }} />
-                        <Pyramid {...{ content, section: "bottom" }} />
-                    </div>
-                </div>
-            )}
+        <div ref={gemRef} className="dharma-gem">
+            <div className="jewel" id={`show-${showing}`}>
+                <Pyramid {...{ content, section: "top" }} />
+                <Pyramid {...{ content, section: "bottom" }} />
+            </div>
         </div>
     );
 }
@@ -75,44 +56,22 @@ function Pyramid({ content, section }) {
 
     return (
         <div className={`pyramid ${section}`}>
-            {p.map((path, i) => (
-                <Face key={`${path} face`} index={i + 1}>
-                    {content[path] ? (
-                        <>
-                            <div className="face-title">
-                                <h2 className="pali-path">
-                                    {content[path].pali}
-                                </h2>
-                                <h3>({path.toLowerCase()})</h3>
-                            </div>
-                            {content[path].suttas?.map((sutta) => (
-                                <React.Fragment
-                                    key={`sutta ${sutta.name} for Right ${path}`}
-                                >
-                                    <div className="spacer"></div>
-                                    <a
-                                        className="sutta-link"
-                                        href={sutta.link}
-                                        target="_blank"
-                                        rel="noreferrer"
-                                    >
-                                        {sutta.name}
-                                        <br />({sutta.chapter})
-                                    </a>
-                                </React.Fragment>
-                            ))}
-                            <div className="spacer"></div>
-                            <h4>Right {path} includes:</h4>
-                            <div className="spacer"></div>
-                            {content[path].includes}
-                        </>
-                    ) : (
+            {p.map((path, i) => {
+                const { pali, suttas, includes } = content[path];
+                return (
+                    <Face key={`${path} face`} index={i + 1}>
                         <div className="face-title">
+                            <h2 className="pali-path">{pali}</h2>
                             <h3>({path.toLowerCase()})</h3>
                         </div>
-                    )}
-                </Face>
-            ))}
+                        {suttas && <Suttas {...{ suttas }} />}
+                        <div className="spacer"></div>
+                        <h4>Right {path} includes:</h4>
+                        <div className="spacer"></div>
+                        {includes}
+                    </Face>
+                );
+            })}
         </div>
     );
 }
@@ -125,6 +84,23 @@ function Face({ index, children }) {
             {children}
         </div>
     );
+}
+
+function Suttas({ suttas }) {
+    return suttas.map((sutta) => (
+        <React.Fragment key={`sutta ${sutta.name}`}>
+            <div className="spacer"></div>
+            <a
+                className="sutta-link"
+                href={sutta.link}
+                target="_blank"
+                rel="noreferrer"
+            >
+                {sutta.name}
+                <br />({sutta.chapter})
+            </a>
+        </React.Fragment>
+    ));
 }
 
 export { paths };

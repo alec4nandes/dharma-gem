@@ -74,21 +74,14 @@ $list-box-bg-2: #add8e6;
             flex-direction: column;
         }
 
-        &.row,
-        .parts {
-            flex-direction: row;
-            justify-content: center;
-
-            .part {
-                justify-content: flex-start;
-            }
-        }
-
         .parts-title {
             font-weight: bold;
         }
 
         .parts {
+            flex-direction: row;
+            justify-content: center;
+
             .parts {
                 .part {
                     background-color: $list-box-bg-2;
@@ -97,6 +90,7 @@ $list-box-bg-2: #add8e6;
 
             .part {
                 background-color: $list-box-bg-1;
+                justify-content: flex-start;
             }
         }
 
@@ -114,7 +108,7 @@ $list-box-bg-2: #add8e6;
             padding: 10px;
             text-align: center;
 
-            &.simple {
+            &.row {
                 flex-direction: row;
                 justify-content: center !important;
             }

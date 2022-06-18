@@ -3,7 +3,7 @@ $footer-text-color: #add8e6;
 html,
 body,
 #root,
-.dharma-gem {
+.scroll-content {
     height: 100%;
     width: 100%;
 }
@@ -21,6 +21,21 @@ body {
     #root {
         display: flex;
         flex-direction: column;
+
+        .scroll-content {
+            flex: 1;
+            margin: auto;
+            overflow-x: auto;
+            overflow-y: scroll;
+            position: relative;
+            z-index: 1;
+
+            &.v-align {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
 
         footer {
             width: 100%;

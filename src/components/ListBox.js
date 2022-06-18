@@ -1,10 +1,9 @@
 import "../css/list-box.css";
 import dharmaLists from "../data/lists";
-import { listButtonHandler } from "../data/display";
 import { useEffect, useRef } from "react";
 
 export default function ListBox({ name, setListBox }) {
-    const info = dharmaLists[name],
+    const { parts, definition } = dharmaLists[name],
         listBoxRef = useRef();
 
     useEffect(() => {
@@ -21,29 +20,62 @@ export default function ListBox({ name, setListBox }) {
                 X
             </button>
             <h2>{name}</h2>
-            <h3>{info.definition}</h3>
-            <div
-                className={`parts ${
-                    info.parts.find((part) => part.parts) ? "column" : "row"
-                }`}
-            >
-                {formatParts(info.parts, setListBox, true)}
-            </div>
+            <h3>{definition}</h3>
+            {<Parts {...{ parts, setListBox, isTopLevel: true }} />}
         </div>
     );
 }
 
-function formatDefinition(definition, setListBox) {
-    return Object.keys(dharmaLists).includes(definition) ? (
-        <button
-            className="list-button"
-            onClick={() => listButtonHandler(setListBox, definition)}
-        >
-            {definition}
-        </button>
-    ) : (
-        definition
-    );
+function Parts({ parts, setListBox, isTopLevel }) {
+    const justDefinitions = findUniform(parts, ["definition"]),
+        justPali = findUniform(parts, ["pali", "english"]),
+        ul = justDefinitions && (
+            <ul>
+                {parts.map((part) => {
+                    const { definition } = part;
+                    return (
+                        <li key={definition}>
+                            {<Definition {...{ definition, setListBox }} />}
+                        </li>
+                    );
+                })}
+            </ul>
+        ),
+        pali =
+            justPali &&
+            parts.map((part) => (
+                <PaliWord
+                    key={part.pali}
+                    english={part.english}
+                    pali={part.pali}
+                />
+            )),
+        text =
+            isTopLevel && (ul || pali) ? (
+                <div className="part row">{ul || pali}</div>
+            ) : (
+                ul || pali || partsRecursive(parts, setListBox)
+            );
+
+    function partsRecursive(parts, setListBox) {
+        return parts?.map((part) => {
+            const { definition, english, pali, parts, suttas } = part;
+            return (
+                <div key={definition || pali} className="part">
+                    {definition && (
+                        <div className={parts ? "parts-title" : "definition"}>
+                            {<Definition {...{ definition, setListBox }} />}
+                        </div>
+                    )}
+                    {english && pali && <PaliWord {...{ english, pali }} />}
+                    {parts && <Parts {...{ parts, setListBox }} />}
+                    {suttas && <ListBoxSuttas {...{ suttas }} />}
+                </div>
+            );
+        });
+    }
+
+    return <div className={`parts ${isTopLevel ? "column" : ""}`}>{text}</div>;
 }
 
 function findUniform(parts, keys) {
@@ -55,35 +87,14 @@ function findUniform(parts, keys) {
     );
 }
 
-function formatParts(parts, setListBox, isTopLevel) {
-    const justDefinitions = findUniform(parts, ["definition"]),
-        justPali = findUniform(parts, ["pali", "english"]);
-
-    const ul = justDefinitions && (
-        <ul>
-            {parts.map((part) => (
-                <li key={part.definition}>
-                    {formatDefinition(part.definition, setListBox)}
-                </li>
-            ))}
-        </ul>
+function Definition({ definition, setListBox }) {
+    return Object.keys(dharmaLists).includes(definition) ? (
+        <button className="list-button" onClick={() => setListBox(definition)}>
+            {definition}
+        </button>
+    ) : (
+        definition
     );
-
-    const pali =
-        justPali &&
-        parts.map((part) => (
-            <PaliWord english={part.english} pali={part.pali} />
-        ));
-
-    if (ul || pali) {
-        return isTopLevel ? (
-            <div className="part simple">{ul || pali}</div>
-        ) : (
-            ul || pali
-        );
-    } else {
-        return partsRecursive(parts, setListBox, isTopLevel);
-    }
 }
 
 function PaliWord({ english, pali }) {
@@ -95,42 +106,24 @@ function PaliWord({ english, pali }) {
     );
 }
 
-function partsRecursive(parts, setListBox, isTopLevel) {
-    return parts?.map((part) => {
-        const { definition, english, pali, parts, suttas } = part;
-        return (
-            <div key={definition || pali} className="part">
-                {definition && (
-                    <div className={parts ? "parts-title" : "definition"}>
-                        {formatDefinition(definition, setListBox)}
-                    </div>
-                )}
-                {english && pali && <PaliWord {...{ english, pali }} />}
-                {parts && (
-                    <div className="parts">
-                        {formatParts(parts, setListBox)}
-                    </div>
-                )}
-                {suttas && (
-                    <div className="list-box-suttas">
-                        <div className="parts-title">Suttas:</div>
-                        <ul>
-                            {suttas.map((sutta) => (
-                                <li key={sutta.title}>
-                                    <a
-                                        className="list-button"
-                                        href={sutta.link}
-                                        target="_blank"
-                                        rel="noreferrer"
-                                    >
-                                        {sutta.title}
-                                    </a>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                )}
-            </div>
-        );
-    });
+function ListBoxSuttas({ suttas }) {
+    return (
+        <div className="list-box-suttas">
+            <div className="parts-title">Suttas:</div>
+            <ul>
+                {suttas.map((sutta) => (
+                    <li key={sutta.title}>
+                        <a
+                            className="list-button"
+                            href={sutta.link}
+                            target="_blank"
+                            rel="noreferrer"
+                        >
+                            {sutta.title}
+                        </a>
+                    </li>
+                ))}
+            </ul>
+        </div>
+    );
 }
