@@ -38,8 +38,9 @@ export default function App() {
                         target="_blank"
                         rel="noreferrer"
                     >
-                        visit my portfolio.
+                        visit my portfolio
                     </a>
+                    .
                 </p>
             </footer>
         </>
