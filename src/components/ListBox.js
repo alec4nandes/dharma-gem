@@ -27,7 +27,7 @@ export default function ListBox({ name, setListBox }) {
                     info.parts.find((part) => part.parts) ? "column" : "row"
                 }`}
             >
-                {partsRecursive(info.parts, setListBox)}
+                {formatParts(info.parts, setListBox, true)}
             </div>
         </div>
     );
@@ -44,6 +44,29 @@ function formatDefinition(definition, setListBox) {
     ) : (
         definition
     );
+}
+
+function formatParts(parts, setListBox, isTopLevel) {
+    const justDefinitions =
+        parts.filter((obj) => {
+            const keys = Object.keys(obj);
+            return keys.length === 1 && keys[0] === "definition";
+        }).length === parts.length;
+
+    const ul = justDefinitions && (
+        <ul>
+            {parts.map((part) => (
+                <li key={part.definition}>
+                    {formatDefinition(part.definition, setListBox)}
+                </li>
+            ))}
+        </ul>
+    );
+    if (ul) {
+        return isTopLevel ? <div className="part">{ul}</div> : ul;
+    } else {
+        return partsRecursive(parts, setListBox);
+    }
 }
 
 function partsRecursive(parts, setListBox) {
@@ -67,26 +90,7 @@ function partsRecursive(parts, setListBox) {
                     {paliWord}
                     {parts && (
                         <div className="parts">
-                            {parts.filter((obj) => {
-                                const keys = Object.keys(obj);
-                                return (
-                                    keys.length === 1 &&
-                                    keys[0] === "definition"
-                                );
-                            }).length === parts.length ? (
-                                <ul>
-                                    {parts.map((part) => (
-                                        <li key={part.definition}>
-                                            {formatDefinition(
-                                                part.definition,
-                                                setListBox
-                                            )}
-                                        </li>
-                                    ))}
-                                </ul>
-                            ) : (
-                                partsRecursive(parts, setListBox)
-                            )}
+                            {formatParts(parts, setListBox)}
                         </div>
                     )}
                     {suttas && (
