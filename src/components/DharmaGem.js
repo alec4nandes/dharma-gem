@@ -1,6 +1,7 @@
 import "../css/dharma-gem.css";
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef } from "react";
 import makeContent from "../data/display";
+import ListBox from "./ListBox";
 
 const paths = [
     "Understanding",
@@ -24,42 +25,47 @@ export default function DharmaGem({
         content = useMemo(
             () => makeContent({ setShowing, setListBox }),
             [setListBox, setShowing]
-        ),
-        [loaded, setLoaded] = useState(false);
+        );
 
     useEffect(() => {
-        function centerGems(behavior) {
-            scrollRef.current.scrollTo({
-                left:
-                    window.innerWidth < gemRef.current.offsetWidth
-                        ? (gemRef.current.offsetWidth - window.innerWidth) / 2
-                        : 0,
-                top: 0,
-                behavior,
-            });
+        function centerGems() {
+            gemRef.current &&
+                scrollRef.current?.scrollTo({
+                    left:
+                        window.innerWidth < gemRef.current.offsetWidth
+                            ? (gemRef.current.offsetWidth - window.innerWidth) /
+                              2
+                            : 0,
+                    top: 0,
+                    behavior: "smooth",
+                });
         }
-        function centerGemsSmooth() {
-            centerGems("smooth");
-        }
-        !listBox && window.addEventListener("resize", centerGemsSmooth);
-        centerGems(loaded ? "smooth" : "auto");
-        !loaded && setLoaded(true);
-        // clean up event listener
-        return () => window.removeEventListener("resize", centerGemsSmooth);
-    }, [listBox, loaded, showing]);
+        centerGems();
+        window.addEventListener("resize", centerGems);
+        return () => window.removeEventListener("resize", centerGems);
+    });
 
     return (
         <div
             ref={scrollRef}
-            className="dharma-gem"
-            style={{ visibility: loaded ? "visible" : "hidden" }}
+            className={`dharma-gem ${listBox ? "v-align" : ""}`}
         >
-            <div ref={gemRef} className="perspective-container">
-                <div className="jewel" id={`show-${showing}`}>
-                    <Pyramid {...{ content, section: "top" }} />
-                    <Pyramid {...{ content, section: "bottom" }} />
+            {listBox ? (
+                <ListBox
+                    {...{
+                        key: listBox,
+                        setListBox,
+                        name: listBox,
+                    }}
+                />
+            ) : (
+                <div ref={gemRef} className="perspective-container">
+                    <div className="jewel" id={`show-${showing}`}>
+                        <Pyramid {...{ content, section: "top" }} />
+                        <Pyramid {...{ content, section: "bottom" }} />
+                    </div>
                 </div>
-            </div>
+            )}
         </div>
     );
 }

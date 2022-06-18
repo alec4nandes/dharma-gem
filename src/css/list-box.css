@@ -1,7 +1,10 @@
 .list-box {
+  width: 100vw;
   max-width: 600px;
   background-color: #fff;
   border-radius: 15px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -27,7 +30,7 @@
 }
 
 .list-box h2 {
-  margin: 0;
+  margin: 0 25px;
 }
 
 .list-box .pali-word {

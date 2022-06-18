@@ -26,6 +26,10 @@ body {
   background-color: #000;
   font-family: "Archivo Narrow", sans-serif;
   margin: 0;
+  text-size-adjust: none;
+  -moz-text-size-adjust: none;
+  -ms-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
 }
 
 body #root {
@@ -47,6 +51,18 @@ body #root .dharma-gem {
   overflow-y: scroll;
   position: relative;
   z-index: 1;
+}
+
+body #root .dharma-gem.v-align {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 body #root .dharma-gem .perspective-container {
@@ -132,14 +148,15 @@ body #root .dharma-gem .perspective-container .jewel .pyramid .face {
   -webkit-clip-path: polygon(50% 0, 100% 100%, 0 100%);
           clip-path: polygon(50% 0, 100% 100%, 0 100%);
   font-size: 0.9rem;
+  line-height: 1.1rem;
   overflow: auto;
   position: absolute;
   text-align: center;
   -webkit-transform-origin: bottom;
           transform-origin: bottom;
   /* Chrome has problems pulling text on any surface
-                    transformed to a factor of 90deg. Rotate each face a factor of 45deg
-                    and then rotate the jewel 45deg to straighten. */
+                            transformed to a factor of 90deg. Rotate each face a factor of 45deg
+                            and then rotate the jewel 45deg to straighten. */
 }
 
 body #root .dharma-gem .perspective-container .jewel .pyramid .face:nth-child(even) {
@@ -190,7 +207,7 @@ body #root .dharma-gem .perspective-container .jewel .pyramid .face * {
 }
 
 body #root .dharma-gem .perspective-container .jewel .pyramid .face .face-title {
-  width: 90px;
+  width: 110px;
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
@@ -201,6 +218,7 @@ body #root .dharma-gem .perspective-container .jewel .pyramid .face .face-title 
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
+  line-height: 1.4rem;
   position: relative;
 }
 

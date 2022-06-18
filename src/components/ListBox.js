@@ -1,11 +1,19 @@
 import "../css/list-box.css";
 import dharmaLists from "../data/lists";
+import { listButtonHandler } from "../data/display";
+import { useEffect, useRef } from "react";
 
 export default function ListBox({ name, setListBox }) {
-    const info = dharmaLists[name];
+    const info = dharmaLists[name],
+        listBoxRef = useRef();
+
+    useEffect(() => {
+        listBoxRef.current.scrollIntoView();
+        window.scrollTo(0, 0);
+    });
 
     return (
-        <div className="list-box">
+        <div ref={listBoxRef} className="list-box">
             <button
                 className="list-button close-list-box"
                 onClick={() => setListBox(undefined)}
@@ -43,7 +51,12 @@ function partsRecursive(parts, setListBox) {
                             {Object.keys(dharmaLists).includes(definition) ? (
                                 <button
                                     className="list-button"
-                                    onClick={() => setListBox(definition)}
+                                    onClick={() =>
+                                        listButtonHandler(
+                                            setListBox,
+                                            definition
+                                        )
+                                    }
                                 >
                                     {definition}
                                 </button>

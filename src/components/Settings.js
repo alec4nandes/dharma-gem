@@ -36,7 +36,10 @@ export default function Settings({ setShowing, listBox, setListBox }) {
             {paths.map((path, i) => (
                 <button
                     key={`show side ${path}`}
-                    onClick={() => setShowing(i + 1)}
+                    onClick={() => {
+                        setShowing(i + 1);
+                        setListBox(undefined);
+                    }}
                 >
                     {path}
                 </button>

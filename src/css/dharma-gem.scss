@@ -33,7 +33,10 @@ body {
     background-color: #000;
     font-family: "Archivo Narrow", sans-serif;
     margin: 0;
-    // overflow: hidden;
+    text-size-adjust: none;
+    -moz-text-size-adjust: none;
+    -ms-text-size-adjust: none;
+    -webkit-text-size-adjust: none;
 
     #root {
         display: flex;
@@ -46,6 +49,12 @@ body {
             overflow-y: scroll;
             position: relative;
             z-index: 1;
+
+            &.v-align {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
 
             .perspective-container {
                 height: $gem-dim;
@@ -111,14 +120,15 @@ body {
                             width: $gem-dim;
                             clip-path: polygon(50% 0, 100% 100%, 0 100%);
                             font-size: 0.9rem;
+                            line-height: 1.1rem;
                             overflow: auto;
                             position: absolute;
                             text-align: center;
                             transform-origin: bottom;
 
                             /* Chrome has problems pulling text on any surface
-                    transformed to a factor of 90deg. Rotate each face a factor of 45deg
-                    and then rotate the jewel 45deg to straighten. */
+                            transformed to a factor of 90deg. Rotate each face a factor of 45deg
+                            and then rotate the jewel 45deg to straighten. */
 
                             &:nth-child(even) {
                                 background-color: $bg-1;
@@ -172,10 +182,11 @@ body {
                             }
 
                             .face-title {
-                                width: 90px;
+                                width: 110px;
                                 display: inline-flex;
                                 flex-direction: column;
                                 justify-content: flex-end;
+                                line-height: 1.4rem;
                                 position: relative;
                             }
 
