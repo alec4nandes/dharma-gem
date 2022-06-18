@@ -142,4 +142,14 @@
   padding: 10px;
   text-align: center;
 }
+
+.list-box .parts .part.simple {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center !important;
+      -ms-flex-pack: center !important;
+          justify-content: center !important;
+}
 /*# sourceMappingURL=list-box.css.map */

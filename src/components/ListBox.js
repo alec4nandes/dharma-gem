@@ -46,12 +46,18 @@ function formatDefinition(definition, setListBox) {
     );
 }
 
-function formatParts(parts, setListBox, isTopLevel) {
-    const justDefinitions =
+function findUniform(parts, keys) {
+    return (
         parts.filter((obj) => {
-            const keys = Object.keys(obj);
-            return keys.length === 1 && keys[0] === "definition";
-        }).length === parts.length;
+            const k = Object.keys(obj);
+            return k.sort().join(",") === keys.sort().join(",");
+        }).length === parts.length
+    );
+}
+
+function formatParts(parts, setListBox, isTopLevel) {
+    const justDefinitions = findUniform(parts, ["definition"]),
+        justPali = findUniform(parts, ["pali", "english"]);
 
     const ul = justDefinitions && (
         <ul>
@@ -62,58 +68,69 @@ function formatParts(parts, setListBox, isTopLevel) {
             ))}
         </ul>
     );
-    if (ul) {
-        return isTopLevel ? <div className="part">{ul}</div> : ul;
+
+    const pali =
+        justPali &&
+        parts.map((part) => (
+            <PaliWord english={part.english} pali={part.pali} />
+        ));
+
+    if (ul || pali) {
+        return isTopLevel ? (
+            <div className="part simple">{ul || pali}</div>
+        ) : (
+            ul || pali
+        );
     } else {
-        return partsRecursive(parts, setListBox);
+        return partsRecursive(parts, setListBox, isTopLevel);
     }
 }
 
-function partsRecursive(parts, setListBox) {
+function PaliWord({ english, pali }) {
+    return (
+        <div key={`pali word ${pali}`} className="pali-word">
+            <div className="english">{english}</div>
+            <div className="pali">{pali}</div>
+        </div>
+    );
+}
+
+function partsRecursive(parts, setListBox, isTopLevel) {
     return parts?.map((part) => {
-        const { definition, english, pali, parts, suttas } = part,
-            paliWord = english && pali && (
-                <div key={`pali word ${pali}`} className="pali-word">
-                    <div className="english">{english}</div>
-                    <div className="pali">{pali}</div>
-                </div>
-            ),
-            isOnlyPali = !definition && !parts && !suttas && paliWord;
+        const { definition, english, pali, parts, suttas } = part;
         return (
-            isOnlyPali || (
-                <div key={definition || pali} className="part">
-                    {definition && (
-                        <div className={parts ? "parts-title" : "definition"}>
-                            {formatDefinition(definition, setListBox)}
-                        </div>
-                    )}
-                    {paliWord}
-                    {parts && (
-                        <div className="parts">
-                            {formatParts(parts, setListBox)}
-                        </div>
-                    )}
-                    {suttas && (
-                        <div className="list-box-suttas">
-                            <div className="parts-title">Suttas:</div>
-                            <ul>
-                                {suttas.map((sutta) => (
-                                    <li key={sutta.title}>
-                                        <a
-                                            className="list-button"
-                                            href={sutta.link}
-                                            target="_blank"
-                                            rel="noreferrer"
-                                        >
-                                            {sutta.title}
-                                        </a>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    )}
-                </div>
-            )
+            <div key={definition || pali} className="part">
+                {definition && (
+                    <div className={parts ? "parts-title" : "definition"}>
+                        {formatDefinition(definition, setListBox)}
+                    </div>
+                )}
+                {english && pali && <PaliWord {...{ english, pali }} />}
+                {parts && (
+                    <div className="parts">
+                        {formatParts(parts, setListBox)}
+                    </div>
+                )}
+                {suttas && (
+                    <div className="list-box-suttas">
+                        <div className="parts-title">Suttas:</div>
+                        <ul>
+                            {suttas.map((sutta) => (
+                                <li key={sutta.title}>
+                                    <a
+                                        className="list-button"
+                                        href={sutta.link}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                    >
+                                        {sutta.title}
+                                    </a>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                )}
+            </div>
         );
     });
 }
