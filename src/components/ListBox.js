@@ -1,18 +1,11 @@
 import "../css/list-box.css";
 import dharmaLists from "../data/lists";
-import { useEffect, useRef } from "react";
 
 export default function ListBox({ name, setListBox }) {
-    const { parts, definition } = dharmaLists[name],
-        listBoxRef = useRef();
-
-    useEffect(() => {
-        listBoxRef.current.scrollIntoView();
-        window.scrollTo(0, 0);
-    });
+    const { parts, definition } = dharmaLists[name];
 
     return (
-        <div ref={listBoxRef} className="list-box">
+        <div className="list-box">
             <button
                 className="list-button close-list-box"
                 onClick={() => setListBox(undefined)}
