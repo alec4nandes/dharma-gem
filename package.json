@@ -1,6 +1,6 @@
 {
     "name": "dharma-gem-react",
-    "homepage": "https://fern.haus/gem",
+    "homepage": "https://fern.haus/dharma-gem",
     "version": "0.1.0",
     "private": true,
     "dependencies": {
